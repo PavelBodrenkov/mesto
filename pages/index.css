@@ -4,12 +4,10 @@
 @import url(./../blocks/conteiner/conteiner.css);
 /*Header*/
 @import url(./../blocks/header/header.css);
-@import url(./../blocks/header/__position/header__position.css);
 @import url(./../blocks/line/line.css);
 @import url(./../blocks/header/__logo/header__logo.css);
 /*Profile*/
 @import url(./../blocks/profile/profile.css);
-@import url(./../blocks/profile/__position/profile__position.css);
 @import url(./../blocks/profile/__avatar/profile__avatar.css);
 @import url(./../blocks/profile/__info/profile__info.css);
 @import url(./../blocks/profile/__eidt/profile__edit.css);

@@ -1,9 +1,0 @@
-.profile__position {
-    margin-top: 40px;
-}
-
-@media screen and (max-width: 689px) {
-    .profile__position {
-        margin-top: 42px;
-    } 
-}
