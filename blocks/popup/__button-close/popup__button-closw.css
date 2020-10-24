@@ -22,6 +22,8 @@
     .popup__button-close {
         top: -52px;
         right: -2px;
+        width: 26px;
+        height: 26px;
     }
     .button-close:hover{
         top: -52px;

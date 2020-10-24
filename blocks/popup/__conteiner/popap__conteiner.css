@@ -3,7 +3,7 @@
     width: 100%;
     background-color:white;
     position: relative;
-    padding: 36px 36px 36px 36px;
+    padding: 36px;
     border-radius: 10px;
     box-sizing: border-box;
     
@@ -13,4 +13,5 @@
     .popup__conteiner {
        width: calc(100% - 19px *2);
        height: 322px;
+       padding: 25px 22px;
     }}
