@@ -13,3 +13,7 @@
     outline: none;
     background-color: white;
 }
+
+.element__like:hover {
+    opacity: 0.6;
+}
