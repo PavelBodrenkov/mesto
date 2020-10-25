@@ -18,57 +18,57 @@
                     <div class="profile__info">
                         <div class="profile__edit">
                           <h1 class="profile__name">Жак-Ив Кусто</h1>
-                          <button class="profile__edit-button" type="button"></button>
+                          <button class="button button_type_edit" type="button"></button>
                         </div>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button class="profile__add-button" type="button"></button>
+                    <button class="button button_type_add-card" type="button"></button>
                 </section>
                 <section class="elements">
-                    <div class="elements__content">
+                    <article class="elements__content">
                         <div class="element">
                             <img src="./images/kirill-pershin-1088404-unsplash-1.jpg" class="element__photo" alt="Карачаевск">
                             <div class="element__position">
                               <h3 class="element__subtitle">Карачаевск</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class=" button button_type_like" type="button"></button>
                             </div>
                         </div>
                         <div class="element">
                             <img src="./images/kirill-pershin-1404681-unsplash-1.jpg" class="element__photo" alt="Гора Эльбрус">
                             <div class="element__position">
                               <h3 class="element__subtitle">Гора Эльбрус</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class="button button_type_like" type="button"></button>
                             </div>
                         </div>
                         <div class="element">
                             <img src="./images/kirill-pershin-1556355-unsplash-1.jpg" class="element__photo" alt="Домбай">
                             <div class="element__position">
                               <h3 class="element__subtitle">Домбай</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class="button button_type_like" type="button"></button>
                             </div>
                         </div>
                         <div class="element">
                             <img src="./images/kirill-pershin-1404681-unsplash.jpg" class="element__photo" alt="Гора Эльбрус">
                             <div class="element__position">
                               <h3 class="element__subtitle">Гора Эльбрус</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class="button button_type_like" type="button"></button>
                             </div>
                         </div>
                         <div class="element">
                             <img src="./images/kirill-pershin-1556355-unsplash.jpg" class="element__photo" alt="Домбай">
                             <div class="element__position">
                               <h3 class="element__subtitle">Домбай</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class="button button_type_like" type="button"></button>
                             </div>
                         </div>
                         <div class="element">
                             <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="element__photo" alt="Карачаевск">
                             <div class="element__position">
                               <h3 class="element__subtitle">Карачаево-Черкеск</h3>
-                              <button class="element__like" type="button"></button>
+                              <button class="button button_type_like" type="button"></button>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </section>
             </main>
             <footer class="footer">
@@ -80,12 +80,12 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                    <form class="form" name="popup">
                        <fieldset class="popup__fieldset">
-                           <input class="popup__data" type="text" name="name" value="">
-                           <input class="popup__name popup__data" type="text" name="profession" value="">
+                           <input class="popup__data popup__data_name" type="text" name="name" value="">
+                           <input class="popup__data popup__data_job" type="text" name="profession" value="">
                        </fieldset>
-                       <input class="popup__button" type="submit" name="button" value="Сохранить">
+                       <button class="button button_type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
                    </form>
-                <button class="popup__button-close" type="button"></button>
+                <button aria-label="close" class="button button_type_close" type="button"></button>
             </div>
         </div> 
     </div>

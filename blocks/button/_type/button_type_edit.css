@@ -1,4 +1,4 @@
-.profile__edit-button {
+.button_type_edit {
     background-image: url(./../../../images/Edit-Button.svg);
     width: 24px;
     height: 24px;
@@ -13,20 +13,19 @@
     outline: none;
 }
 
-.profile__edit-button:hover {
+.button_type_edit:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 689px) {
-    .profile__edit_button {
-        margin: 14px 0 0 0;
+    .button_type_edit {
+        margin: 0 0 0 14px;
         box-sizing: border-box;  
 }}
 
 @media screen and (max-width: 457px) {
-    .profile__edit-button {
+    .button_type_edit {
         width: 18px;
         height: 18px;
-        align-self: flex-end;
         margin: 0 0 0 9px;
 }}

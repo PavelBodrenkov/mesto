@@ -1,12 +1,12 @@
 const popup = document.querySelector('.popup');
-const buttonClose = popup.querySelector('.popup__button-close');
-const profileInfo = document.querySelector('.profile__info');
-const editButton = document.querySelector('.profile__edit-button');
+const buttonClose = popup.querySelector('.button_type_close');
+const editButton = document.querySelector('.button_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const formElement = document.querySelector('.form');
-const nameInput = formElement.querySelector('.popup__data');
-const jobInput = formElement.querySelector('.popup__name');
+const nameInput = formElement.querySelector('.popup__data_name');
+const jobInput = formElement.querySelector('.popup__data_job');
+
 
 //добавляем данные в value со страницы
 function setInputValue() {
@@ -36,9 +36,14 @@ function formSubmitHandler(evt) {
     closeForm();
 }
 
+
 //Открываем попап//
 editButton.addEventListener('click', openForm);
 //Закрываем попап//
 buttonClose.addEventListener('click', closeForm);
 formElement.addEventListener('submit', formSubmitHandler); 
 popup.addEventListener('click', popupClickHandler);
+
+
+
+

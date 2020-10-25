@@ -1,4 +1,4 @@
-.element__like {
+.button_type_like {
     background-image: url(./../../../images/like.svg);
     width: 20.76px;
     height: 18.13px;
@@ -14,6 +14,6 @@
     background-color: white;
 }
 
-.element__like:hover {
+.button_type_like:hover {
     opacity: 0.6;
 }
