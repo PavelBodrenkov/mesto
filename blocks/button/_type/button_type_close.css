@@ -1,5 +1,5 @@
-.button_type_close {
-    background: url(./../../../images/Close-popup.svg) center no-repeat;
+.button__type_close {
+    background: url('./../../../images/Close-popup.svg') center no-repeat;
     width: 31.7px;
     height: 31.7px;
     background-size: contain;
@@ -13,12 +13,12 @@
     outline: none;
 }
 
-.button_type_close:hover {
+.button__type_close:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width:500px) {
-    .button_type_close {
+    .button__type_close {
         top: -43px;
         right: 9px;
         width: 20px;

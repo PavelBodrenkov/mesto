@@ -27,20 +27,20 @@ const initialCards = [
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupAddTypePhoto = document.querySelector('.popup__add_type_photo');
-const buttonTypeClose = popupTypeEdit.querySelector('.button_type_close');
-const buttonTypeClosePhoto = document.querySelector('.button_type_close_add-photo');
-const buttonTypeEdit = document.querySelector('.button_type_edit');
+const buttonTypeClose = popupTypeEdit.querySelector('.button__type_close');
+const buttonTypeClosePhoto = document.querySelector('.button__type_close_add-photo');
+const buttonTypeEdit = document.querySelector('.button__type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const formElement = document.querySelector('.form');
 const popupDataTypeName = formElement.querySelector('.popup__data_type_name');
 const popupDataTypeJob = formElement.querySelector('.popup__data_type_job');
-const buttonTypeAddCard = document.querySelector('.button_type_add-card');
+const buttonTypeAddCard = document.querySelector('.button__type_add-card');
 const formTypePhoto = document.querySelector('.form_type_photo');
 const popupDataTypeLocation = document.querySelector('.popup__data_type_location');
 const popupDataTypeLink = document.querySelector('.popup__data_type_link');
 const popapTypePhoto = document.querySelector('.popup_type_photo');
-const buttonTypeBigClose = document.querySelector('.button_type_big_close');
+const buttonTypeBigClose = document.querySelector('.button__type_big_close');
 
 
 
@@ -52,7 +52,7 @@ initialCards.map((el) => {
   const elementCard = elementTemplate.cloneNode(true);
   elementCard.querySelector('.element__photo').src = el.link;
   elementCard.querySelector('.element__subtitle').textContent = el.name;
-  elementCard.querySelector('.button_type_delite').addEventListener('click', (event) => {
+  elementCard.querySelector('.button__type_delite').addEventListener('click', (event) => {
     const elementContent = event.target.closest('.element');
     if(elementContent) {
       elementContent.remove()
@@ -89,9 +89,9 @@ elementContent.addEventListener('click', openPopapPhoto);
 
 //Поставить лайк
 const addLike = (event) => {
-  const btnAddLike = event.target.classList.contains('button_type_like');
+  const btnAddLike = event.target.classList.contains('button__type_like');
   if(btnAddLike) {
-    event.target.classList.toggle('button_type_like_active')
+    event.target.classList.toggle('button__type_like_active')
   }
 }
 elementContent.addEventListener('click', addLike);
@@ -99,7 +99,7 @@ elementContent.addEventListener('click', addLike);
 
 //Удаляем карточки
 const delitCard = (event) => {
-  const btnDelitCard = event.target.classList.contains('button_type_delite');
+  const btnDelitCard = event.target.classList.contains('button__type_delite');
   if(btnDelitCard) {
     event.target.closest('.element').remove();
   }

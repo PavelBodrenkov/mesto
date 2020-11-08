@@ -1,4 +1,4 @@
-.button_type_delite {
+.button__type_delite {
     background-image: url('./../../../images/button-delite.svg');
     width: 18px;
     height: 19.3px;
@@ -14,6 +14,6 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-.button_type_delite:hover {
+.button__type_delite:hover {
     opacity: 0.6;
 }
