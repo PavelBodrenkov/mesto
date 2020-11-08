@@ -27,14 +27,14 @@ const initialCards = [
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupAddTypePhoto = document.querySelector('.popup__add_type_photo');
-const buttonClose = popupTypeEdit.querySelector('.button_type_close');
+const buttonTypeClose = popupTypeEdit.querySelector('.button_type_close');
 const buttonTypeClosePhoto = document.querySelector('.button_type_close_add-photo');
-const editButton = document.querySelector('.button_type_edit');
+const buttonTypeEdit = document.querySelector('.button_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const formElement = document.querySelector('.form');
-const nameInput = formElement.querySelector('.popup__data_type_name');
-const jobInput = formElement.querySelector('.popup__data_type_job');
+const popupDataTypeName = formElement.querySelector('.popup__data_type_name');
+const popupDataTypeJob = formElement.querySelector('.popup__data_type_job');
 const buttonTypeAddCard = document.querySelector('.button_type_add-card');
 const formTypePhoto = document.querySelector('.form_type_photo');
 const popupDataTypeLocation = document.querySelector('.popup__data_type_location');
@@ -46,20 +46,20 @@ const buttonTypeBigClose = document.querySelector('.button_type_big_close');
 
 //Загружаем фото на страницу через массив
 const elementTemplate = document.querySelector('#element-add').content;
-const element = document.querySelector('.elements__content');
+const elementContent = document.querySelector('.elements__content');
 
 initialCards.map((el) => {
   const elementCard = elementTemplate.cloneNode(true);
   elementCard.querySelector('.element__photo').src = el.link;
   elementCard.querySelector('.element__subtitle').textContent = el.name;
   elementCard.querySelector('.button_type_delite').addEventListener('click', (event) => {
-    const elemnt = event.target.closest('.element');
-    if(elemnt) {
-      elemnt.remove()
+    const elementContent = event.target.closest('.element');
+    if(elementContent) {
+      elementContent.remove()
     }
   }) 
 
-   element.append(elementCard);
+  elementContent.append(elementCard);
 });
 
 //Добавляем карточки
@@ -68,11 +68,10 @@ function formAddPhoto(event) {
   const elementCard = elementTemplate.cloneNode(true);
   elementCard.querySelector('.element__photo').src = popupDataTypeLink.value;
   elementCard.querySelector('.element__subtitle').textContent = popupDataTypeLocation.value;
-  element.prepend(elementCard);
-  closeForm(popupAddTypePhoto);
-
+  elementContent.prepend(elementCard);
   popupDataTypeLink.value = '';
   popupDataTypeLocation.value = '';
+  closeForm(popupAddTypePhoto);
 }
 
 //Открыть фото
@@ -85,7 +84,7 @@ const openPopapPhoto = (event) => {
     openForm(popapTypePhoto);
   }
 };
-element.addEventListener('click', openPopapPhoto);
+elementContent.addEventListener('click', openPopapPhoto);
 //
 
 //Поставить лайк
@@ -95,7 +94,7 @@ const addLike = (event) => {
     event.target.classList.toggle('button_type_like_active')
   }
 }
-element.addEventListener('click', addLike);
+elementContent.addEventListener('click', addLike);
 //
 
 //Удаляем карточки
@@ -105,13 +104,13 @@ const delitCard = (event) => {
     event.target.closest('.element').remove();
   }
 }
-element.addEventListener('click', delitCard);
+elementContent.addEventListener('click', delitCard);
 //
 
 //добавляем данные в value со страницы
 function setInputValue() {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileSubtitle.textContent;
+  popupDataTypeName.value = profileName.textContent;
+  popupDataTypeJob.value = profileSubtitle.textContent;
 }
 //Открываем попап
 function openForm(popapOpen) {
@@ -136,8 +135,8 @@ function popupClosePhoto(evt) {
 //
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    profileName.textContent=nameInput.value;
-    profileSubtitle.textContent=jobInput.value;
+    profileName.textContent=popupDataTypeName.value;
+    profileSubtitle.textContent=popupDataTypeJob.value;
     closeForm(popupTypeEdit);
 }
 
@@ -145,7 +144,7 @@ function formSubmitHandler(evt) {
 
 
 //Открываем попап//
-editButton.addEventListener('click', function() {
+buttonTypeEdit.addEventListener('click', function() {
   openForm(popupTypeEdit);
 });
 buttonTypeAddCard.addEventListener('click', function() {
@@ -153,7 +152,7 @@ buttonTypeAddCard.addEventListener('click', function() {
 });
 
 //Закрываем попап//
-buttonClose.addEventListener('click', function () {
+buttonTypeClose.addEventListener('click', function () {
   closeForm(popupTypeEdit);
 });
 buttonTypeClosePhoto.addEventListener('click', function() {
