@@ -1,7 +1,11 @@
 .element__photo {
-    max-width: 100%;
+    width: 282px;
+    height: 282px;
+    max-height: 100%;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: block;
+   
 }
+

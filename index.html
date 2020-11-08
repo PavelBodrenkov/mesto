@@ -18,77 +18,72 @@
                     <div class="profile__info">
                         <div class="profile__edit">
                           <h1 class="profile__name">Жак-Ив Кусто</h1>
-                          <button class="button button_type_edit" type="button"></button>
+                          <button aria-label="Редактировать_профиль" class="button button_type_edit" type="button"></button>
                         </div>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button class="button button_type_add-card" type="button"></button>
+                    <button aria-label="Добавить_фото" class="button button_type_add-card" type="button"></button>
                 </section>
                 <section class="elements">
-                    <article class="elements__content">
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1088404-unsplash-1.jpg" class="element__photo" alt="Карачаевск">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Карачаевск</h3>
-                              <button class=" button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1404681-unsplash-1.jpg" class="element__photo" alt="Гора Эльбрус">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Гора Эльбрус</h3>
-                              <button class="button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1556355-unsplash-1.jpg" class="element__photo" alt="Домбай">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Домбай</h3>
-                              <button class="button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1404681-unsplash.jpg" class="element__photo" alt="Гора Эльбрус">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Гора Эльбрус</h3>
-                              <button class="button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1556355-unsplash.jpg" class="element__photo" alt="Домбай">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Домбай</h3>
-                              <button class="button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                        <div class="element">
-                            <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="element__photo" alt="Карачаевск">
-                            <div class="element__position">
-                              <h3 class="element__subtitle">Карачаево-Черкеск</h3>
-                              <button class="button button_type_like" type="button"></button>
-                            </div>
-                        </div>
-                    </article>
+                    <div class="elements__content">
+                        
+                    </div>
                 </section>
             </main>
             <footer class="footer">
                 <p class="footer__subtitle">© 2020 Mesto Russia</p>
             </footer>
         </div>
-        <div class="popup">
+        <!--Попап профиля-->
+        <div class="popup popup_type_edit">
             <div class="popup__conteiner">
                 <h2 class="popup__title">Редактировать профиль</h2>
                    <form class="form" name="popup">
                        <fieldset class="popup__fieldset">
-                           <input class="popup__data popup__data_name" type="text" name="name" value="">
-                           <input class="popup__data popup__data_job" type="text" name="profession" value="">
+                           <input class="popup__data popup__data_type_name" type="text" name="name" value="">
+                           <input class="popup__data popup__data_type_job" type="text" name="profession" value="">
                        </fieldset>
                        <button class="button button_type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
                    </form>
-                <button aria-label="close" class="button button_type_close" type="button"></button>
+                <button aria-label="Закрыть_попап" class="button button_type_close" type="button"></button>
+            </div>
+        </div>
+        <!--End попап профиля-->
+        <!--Попап добавления фото-->
+        <div class="popup popup__add_type_photo">
+            <div class="popup__conteiner popup__conteiner_type_photo">
+                <h2 class="popup__title popup__title_type_photo">Новое место</h2>
+                   <form class="form form_type_photo" name="popup">
+                       <fieldset class="popup__fieldset">
+                           <input class="popup__data popup__data_photo popup__data_type_location" type="text" name="point" value="" placeholder="Название">
+                           <input class="popup__data popup__data_photo popup__data_type_link" type="text" name="photo" value="" placeholder="Ссылка на картинку">
+                       </fieldset>
+                       <button class="button button_type_save button_type_save_photo" type="submit" name="button" value="Сохранить">Сохранить</button>
+                   </form>
+                <button aria-label="Закрыть_попап" class="button button_type_close button_type_close_add-photo" type="button"></button>
             </div>
         </div> 
     </div>
+    <!--End попап фото-->
+        <div class="popup popup_type_photo">
+            <figure class="popup__big">
+                <button aria-label="Закрыть_попап" class="button button_type_close button_type_big_close" type="button"></button>
+                <img class="popup__big-photo" src="">
+                <figcaption class="popup__big-title"></figcaption>
+            </figure>
+        </div> 
+    <!--Карточки-->
+    <template id="element-add">
+        <article class="element">
+            <img src="./images/button-delite.svg" class="button button_type_delite">
+            <img class="element__photo" src="">
+            <div class="element__position">
+                <h3 class="element__subtitle"></h3>
+                <button aria-label="Поставить_лайк" class="button button_type_like" type="button"></button>
+            </div>
+        </article>
+    </template>
+    <!--End Карточки-->
     <script src="./scripts/index.js"></script>
 </body>
 </html>
