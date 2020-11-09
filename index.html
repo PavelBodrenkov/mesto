@@ -18,11 +18,11 @@
                     <div class="profile__info">
                         <div class="profile__edit">
                           <h1 class="profile__name">Жак-Ив Кусто</h1>
-                          <button aria-label="Редактировать_профиль" class="button button__type_edit" type="button"></button>
+                          <button aria-label="Редактировать_профиль" class="button button_type_edit" type="button"></button>
                         </div>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button aria-label="Добавить_фото" class="button button__type_add-card" type="button"></button>
+                    <button aria-label="Добавить_фото" class="button button_type_add-card" type="button"></button>
                 </section>
                 <section class="elements">
                     <div class="elements__content">
@@ -43,9 +43,9 @@
                            <input class="popup__data popup__data_type_name" type="text" name="name" value="">
                            <input class="popup__data popup__data_type_job" type="text" name="profession" value="">
                        </fieldset>
-                       <button class="button button__type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
+                       <button class="button button_type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
                    </form>
-                <button aria-label="Закрыть_попап" class="button button__type_close" type="button"></button>
+                <button aria-label="Закрыть_попап" class="button button_type_close" type="button"></button>
             </div>
         </div>
         <!--End попап профиля-->
@@ -58,16 +58,16 @@
                            <input class="popup__data popup__data_photo popup__data_type_location" type="text" name="point" value="" placeholder="Название">
                            <input class="popup__data popup__data_photo popup__data_type_link" type="text" name="photo" value="" placeholder="Ссылка на картинку">
                        </fieldset>
-                       <button class="button button__type_save"  type="submit" name="button" value="Сохранить">Сохранить</button>
+                       <button class="button button_type_save button_type_save-add"  type="submit" name="button" value="Сохранить">Сохранить</button>
                    </form>
-                <button aria-label="Закрыть_попап" class="button button__type_close button__type_close_add-photo" type="button"></button>
+                <button aria-label="Закрыть_попап" class="button button_type_close button_type_close_add-photo" type="button"></button>
             </div>
         </div> 
     </div>
     <!--End попап фото-->
         <div class="popup popup_type_photo">
             <figure class="popup__big">
-                <button aria-label="Закрыть_попап" class="button button__type_close button__type_big_close" type="button"></button>
+                <button aria-label="Закрыть_попап" class="button button_type_close button_type_big_close" type="button"></button>
                 <img class="popup__big-photo" alt="Фото">
                 <figcaption class="popup__big-title"></figcaption>
             </figure>
@@ -75,11 +75,11 @@
     <!--Карточки-->
     <template id="element-add">
         <article class="element">
-            <button aria-label="Удалить" class="button button__type_delite" type="button"></button>
+            <button aria-label="Удалить" class="button button_type_delite" type="button"></button>
             <img class="element__photo" alt="Фото">
             <div class="element__position">
                 <h3 class="element__subtitle"></h3>
-                <button aria-label="Поставить_лайк" class="button button__type_like" type="button"></button>
+                <button aria-label="Поставить_лайк" class="button button_type_like" type="button"></button>
             </div>
         </article>
     </template>

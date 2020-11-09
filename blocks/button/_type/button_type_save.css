@@ -1,4 +1,4 @@
-.button__type_save {
+.button_type_save {
     width: 100%;
     height: 50.15px;
     background-color: black;
@@ -13,12 +13,12 @@
     transition: 0.25s linear;  
 }
 
-.button__type_save:hover {
+.button_type_save:hover {
     opacity: 0.8;
 }
 
 @media screen and (max-width:500px) {
-    .button__type_save {
+    .button_type_save {
         margin-top: 44px;
         height: 46px;
         font-size: 14px;

@@ -1,5 +1,5 @@
-.button__type_edit {
-    background-image: url('./../../../../images/Edit-Button.svg');
+.button_type_edit {
+    background-image: url('./../../../images/Edit-Button.svg');
     width: 24px;
     height: 24px;
     background-size: cover;
@@ -15,18 +15,18 @@
     
 }
 
-.button__type_edit:hover {
+.button_type_edit:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 689px) {
-    .button__type_edit {
+    .button_type_edit {
         margin: 0 0 12px 14px;
         box-sizing: border-box;  
 }}
 
 @media screen and (max-width: 457px) {
-    .button__type_edit {
+    .button_type_edit {
         width: 18px;
         height: 18px;
         margin: 0 0 6px 9px;
