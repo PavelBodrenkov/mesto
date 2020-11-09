@@ -1,5 +1,5 @@
 .button__type_close {
-    background: url('./../../../images/Close-popup.svg') center no-repeat;
+    background: url('./../../../../images/Close-popup.svg') center no-repeat;
     width: 31.7px;
     height: 31.7px;
     background-size: contain;

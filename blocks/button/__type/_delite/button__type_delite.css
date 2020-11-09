@@ -1,5 +1,5 @@
 .button__type_delite {
-    background-image: url('./../../../images/button-delite.svg');
+    background-image: url('./../../../../images/button-delite.svg');
     width: 18px;
     height: 19.3px;
     background-size: cover;
@@ -12,6 +12,7 @@
     transition: 0.25s linear;
     border:0;
     background-color: rgba(0, 0, 0, 0);
+    outline: none;
 }
 
 .button__type_delite:hover {
