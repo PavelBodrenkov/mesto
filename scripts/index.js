@@ -71,7 +71,7 @@ function formAddPhoto(event) {
   elementContent.prepend(elementCard);
   popupDataTypeLink.value = '';
   popupDataTypeLocation.value = '';
-  closeForm(popupAddTypePhoto);
+    closeForm(popupAddTypePhoto);
 }
 
 //Открыть фото
@@ -162,7 +162,27 @@ buttonTypeBigClose.addEventListener('click', function() {
   closeForm(popapTypePhoto)});
 //Слушатель кнопок
 formElement.addEventListener('submit', formSubmitHandler);
-formTypePhoto.addEventListener('submit', formAddPhoto);
+formTypePhoto.addEventListener('submit', function(event) {
+  if(!popupDataTypeLink.value && !popupDataTypeLocation.value) {
+    event.preventDefault();
+   alert('Поля не могут быть пустыми');
+   return false;
+ }else if(!popupDataTypeLink.value) {
+    event.preventDefault();
+   alert('Поле "Ссылка на картинку" пустое');
+   return false;
+ }else if (!popupDataTypeLocation.value){
+  event.preventDefault();
+  alert('Поле "Название" пустое');
+  return false;
+ } else {
+  formAddPhoto(event);
+ }
+});
+   
+
+ 
+
 //Закрытие попап по фону
 popupTypeEdit.addEventListener('click', popupClickHandler);
 popupAddTypePhoto.addEventListener('click', popupClosePhoto);
