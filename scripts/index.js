@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
-const popupAddTypePhoto = document.querySelector('.popup_add_type_photo');
+const popupAddTypePhoto = document.querySelector('.popup_add_type-photo');
 const buttonTypeClose = popupTypeEdit.querySelector('.button_type_close');
 const buttonTypeClosePhoto = document.querySelector('.button_type_close-photo');
 const buttonTypeEdit = document.querySelector('.button_type_edit');
