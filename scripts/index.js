@@ -26,9 +26,9 @@ const initialCards = [
 ];
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
-const popupAddTypePhoto = document.querySelector('.popup__add_type_photo');
+const popupAddTypePhoto = document.querySelector('.popup_add_type_photo');
 const buttonTypeClose = popupTypeEdit.querySelector('.button_type_close');
-const buttonTypeClosePhoto = document.querySelector('.button_type_close_add-photo');
+const buttonTypeClosePhoto = document.querySelector('.button_type_close-photo');
 const buttonTypeEdit = document.querySelector('.button_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -40,7 +40,7 @@ const formTypePhoto = document.querySelector('.form_type_photo');
 const popupDataTypeLocation = document.querySelector('.popup__data_type_location');
 const popupDataTypeLink = document.querySelector('.popup__data_type_link');
 const popapTypePhoto = document.querySelector('.popup_type_photo');
-const buttonTypeBigClose = document.querySelector('.button_type_big_close');
+const buttonTypeBigClose = document.querySelector('.button_type_big-close');
 
 
 
