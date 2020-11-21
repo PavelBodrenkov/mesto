@@ -26,7 +26,7 @@
                 </section>
                 <section class="elements">
                     <div class="elements__content">
-                        
+
                     </div>
                 </section>
             </main>
@@ -37,13 +37,13 @@
         <!--Попап профиля-->
         <div class="popup popup_type_edit">
             <div class="popup__conteiner">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                   <form class="form" name="popup">
-                       <fieldset class="popup__fieldset">
-                           <input class="popup__data popup__data_type_name" type="text" name="name" value="">
-                           <input class="popup__data popup__data_type_job" type="text" name="profession" value="">
-                       </fieldset>
-                       <button class="button button_type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
+                    <form  action="#" class="form" name="popup" novalidate>
+                       <h2 class="popup__title">Редактировать профиль</h2>
+                        <input id="text-input" class="popup__data popup__data_type_name" type="text" name="name" value="" minlength="2" maxlength="40" required>
+                        <span id="text-input-error" class="popup__data_error"></span>
+                        <input id="subtext-input" class="popup__data popup__data_type_job" type="text" name="profession" value="" minlength="2" maxlength="200" required>
+                        <span id="subtext-input-error" class="popup__data_error"></span>
+                        <button class="button button_type_save" type="submit" name="button" value="Сохранить">Сохранить</button>
                    </form>
                 <button aria-label="Закрыть_попап" class="button button_type_close" type="button"></button>
             </div>
@@ -53,13 +53,13 @@
         <div class="popup popup_add_type-photo">
             <div class="popup__conteiner popup__conteiner_type_photo">
                 <h2 class="popup__title popup__title_type_photo">Новое место</h2>
-                   <form class="form form_type_photo" name="popup">
-                       <fieldset class="popup__fieldset">
-                           <input class="popup__data popup__data_photo popup__data_type_location" type="text" name="point" value="" placeholder="Название">
-                           <input class="popup__data popup__data_photo popup__data_type_link" type="text" name="photo" value="" placeholder="Ссылка на картинку">
-                       </fieldset>
-                       <button class="button button_type_save button_type_save-add"  type="submit" name="button" value="Сохранить">Сохранить</button>
-                   </form>
+                    <form action="#" class="form form_type_photo" name="popup" novalidate>
+                        <input id="text-input" class="popup__data popup__data_photo popup__data_type_location" type="text" name="point" value="" placeholder="Название" minlength="2" maxlength="30" required>
+                        <span id="text-input-error" class="popup__data_error"></span>
+                        <input id="url-input" class="popup__data popup__data_photo popup__data_type_link" type="url" name="photo" value="" placeholder="Ссылка на картинку" required>
+                        <span id="url-input-error" class="popup__data_error"></span>
+                        <button class="button button_type_save button_type_save-add button_type_inactive"  type="submit" name="button" value="Сохранить" disabled>Создать</button>
+                    </form>
                 <button aria-label="Закрыть_попап" class="button button_type_close button_type_close-photo" type="button"></button>
             </div>
         </div> 
@@ -85,5 +85,6 @@
     </template>
     <!--End Карточки-->
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

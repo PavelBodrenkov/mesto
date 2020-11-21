@@ -48,3 +48,10 @@
 @import url('./../blocks/popup/__conteiner/_type/popup__conteiner_type_photo.css');
 @import url('./../blocks/button/_type/button_type_close-photo.css');
 @import url('./../blocks/popup/__title/_type/popup__title_type_photo.css');
+@import url('./../blocks/popup/__data/_type/popup__data_type_error.css');
+@import url('./../blocks/popup/__data/_error/popup__data_error_active.css');
+@import url('./../blocks/button/_type/button_type_inactive.css');
+@import url('./../blocks/popup/__data/_error/popup__data_error.css');
+@import url('./../blocks/form/form.css');
+@import url('./../blocks/popup/__data/_type/popup__data_type_name.css');
+@import url('./../blocks/popup/__data/_type/popup__data_type_job.css');
