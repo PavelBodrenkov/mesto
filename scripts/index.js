@@ -50,10 +50,6 @@ const Esc = 27;
 const elementTemplate = document.querySelector('#element-add').content;
 const elementContent = document.querySelector('.elements__content');
 
-initialCards.forEach((el) => {
-  elementContent.append(createCard(el.link, el.name));
-});
-
 //Загружаем фото на страницу через массив
 function createCard (link, name) {
   const elementCard = elementTemplate.cloneNode(true);
@@ -68,7 +64,24 @@ function createCard (link, name) {
   return elementCard;
 }
 
+initialCards.forEach((el) => {
+  elementContent.append(createCard(el.link, el.name));
+});
+
+
+
 const addPhoto = createCard(popupDataTypeLink.value, popupDataTypeLocation.value);
+
+//Открываем попап
+function popupOpen(popapOpen) {
+  popapOpen.classList.add('popup_opened'); 
+ 
+}
+//Закрываем попап
+function closePopup(popapClose) {
+  popapClose.classList.remove('popup_opened');
+ 
+}
 
 //Добавляем карточки
 function addPhotoForm(event) {
@@ -118,15 +131,16 @@ function setInputValue() {
   popupDataTypeName.value = profileName.textContent;
   popupDataTypeJob.value = profileSubtitle.textContent;
 }
-//Открываем попап
-function popupOpen(popapOpen) {
-  popapOpen.classList.add('popup_opened'); 
- 
-}
-//Закрываем попап
-function closePopup(popapClose){
-  popapClose.classList.remove('popup_opened');
- 
+
+// Сбрасываем форму
+function resetForm(element) {
+  element.reset();
+  element.querySelectorAll('.popup__data_error').forEach((span) => {
+    span.textContent ='';
+  })
+  element.querySelectorAll('.popup__data').forEach((input) => {
+   input.classList.remove('popup__data_type_error');
+  })
 }
 //Функция закрывает форму клик по фону//
 function handlePopupClick(evt) {
@@ -147,7 +161,6 @@ function closePopupBigPhoto(evt) {
   }
 }
 
-//
 function handleFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent=popupDataTypeName.value;
@@ -164,17 +177,6 @@ function closePopupEsc (evt) {
     closePopup(popupAddTypePhoto);
     closePopup(popapTypePhoto);
   }
-}
-
-// Сбрасываем форму
-function resetForm(element) {
-  element.reset();
-  element.querySelectorAll('.popup__data_error').forEach((span) => {
-    span.textContent ='';
-  })
-  element.querySelectorAll('.popup__data').forEach((input) => {
-   input.classList.remove('popup__data_type_error');
-  })
 }
 
 //Открываем попап//
@@ -213,8 +215,6 @@ popapTypePhoto.addEventListener('click', closePopupBigPhoto);
 
 // Закрытие попап Esc
 document.addEventListener('keydown',closePopupEsc);
-
-
 
 
 
