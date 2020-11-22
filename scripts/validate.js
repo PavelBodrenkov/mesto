@@ -43,20 +43,13 @@ const toggleButtonState = (inputList, button, config) => {
 const setEventListeners = (form, config) => {
     const inputList = Array.from(form.querySelectorAll(config.inputSelector));
     const buttonElement = form.querySelector(config.submitButtonSelector);
-            inputList.forEach((input) => {
+    inputList.forEach((input) => {
         input.addEventListener('input', () => {
-        isValid(form, input, config);
-        toggleButtonState(inputList, buttonElement, config);
+            isValid(form, input, config);
+            toggleButtonState(inputList, buttonElement, config);
         });
     });
 };
-
-function validInput () {
-    buttonTypeEdit.addEventListener('click', function () {
-
-    })
-}
-  
 
 // Добавляем слушатель кнопок в формах
 const enableValidation = (config) => {

@@ -43,7 +43,8 @@ const popapTypePhoto = document.querySelector('.popup_type_photo');
 const buttonTypeBigClose = document.querySelector('.button_type_big-close');
 const popupBigPhoto = document.querySelector('.popup__big-photo');
 const popupBigTitle = document.querySelector('.popup__big-title');
-// const span = formElement.querySelector('.popup__data_error');
+const formEditReset = document.querySelector('#form_reset');
+const Esc = 27;
 
 //Загружаем фото на страницу через массив
 const elementTemplate = document.querySelector('#element-add').content;
@@ -130,15 +131,13 @@ function closePopup(popapClose){
 //Функция закрывает форму клик по фону//
 function handlePopupClick(evt) {
   if(evt.target.classList.contains('popup')) {
-    resetForm();
+    resetForm(formEditReset)
     closePopup(popupTypeEdit);
   }
 }
 function closePopupPhoto(evt) {
   if(evt.target.classList.contains('popup_add_type-photo')) {
-    popupDataTypeLink.value = '';
-    popupDataTypeLocation.value = '';
-    resetForm()
+    resetForm(formTypePhoto);
     closePopup(popupAddTypePhoto);
   }
 }
@@ -157,53 +156,47 @@ function handleFormSubmit(evt) {
 }
 
 //Закрываем по нажатию Esc
-function closePopupEsc (e) {
- if(e.keyCode === 27 && popupTypeEdit.classList.contains('popup_opened')){
-  resetForm();
-  closePopup(popupTypeEdit);
- }else if(e.keyCode === 27 && popupAddTypePhoto.classList.contains('popup_opened')) {
-  popupDataTypeLink.value = '';
-  popupDataTypeLocation.value = '';
-  resetForm();
-  closePopup(popupAddTypePhoto);
- }else if(e.keyCode === 27 && popapTypePhoto.classList.contains('popup_opened')) {
-  closePopup(popapTypePhoto);
- }
+function closePopupEsc (evt) {
+  if(evt.keyCode === Esc){
+    resetForm(formEditReset);
+    resetForm(formTypePhoto);
+    closePopup(popupTypeEdit);
+    closePopup(popupAddTypePhoto);
+    closePopup(popapTypePhoto);
+  }
 }
 
-// Сбрасываем ошибку валидации
-function resetForm() {
-  document.querySelectorAll('.popup__data_error').forEach((span) => {
+// Сбрасываем форму
+function resetForm(element) {
+  element.reset();
+  element.querySelectorAll('.popup__data_error').forEach((span) => {
     span.textContent ='';
- })
- document.querySelectorAll('.popup__data').forEach((input) => {
-  input.classList.remove('popup__data_type_error');
- })
+  })
+  element.querySelectorAll('.popup__data').forEach((input) => {
+   input.classList.remove('popup__data_type_error');
+  })
 }
-
 
 //Открываем попап//
 buttonTypeEdit.addEventListener('click', function() {
   popupOpen(popupTypeEdit);
   setInputValue();
- 
- 
 });
+
 buttonTypeAddCard.addEventListener('click', function() {
   popupOpen(popupAddTypePhoto);
-  
 });
 
 //Закрываем попап//
 buttonTypeClose.addEventListener('click', function () {
-  resetForm()
+  resetForm(formEditReset);
   closePopup(popupTypeEdit);
+ 
 });
 buttonTypeClosePhoto.addEventListener('click', function() {
-  popupDataTypeLink.value = '';
-  popupDataTypeLocation.value = '';
-  resetForm();
+  resetForm(formTypePhoto);
   closePopup(popupAddTypePhoto);
+  
 });
 buttonTypeBigClose.addEventListener('click', function() {
   closePopup(popapTypePhoto);
@@ -219,7 +212,7 @@ popupAddTypePhoto.addEventListener('click', closePopupPhoto);
 popapTypePhoto.addEventListener('click', closePopupBigPhoto);
 
 // Закрытие попап Esc
-document.addEventListener('keydown', closePopupEsc);
+document.addEventListener('keydown',closePopupEsc);
 
 
 
