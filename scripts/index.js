@@ -46,7 +46,7 @@ const popapTypePhoto = document.querySelector('.popup_type_photo');
 const buttonTypeBigClose = document.querySelector('.button_type_big-close');
 const formEditReset = document.querySelector('#form_reset');
 const Esc = 27;
-const buttonTypeSaveEdit = document.querySelector('.button_type_save_edit');
+const buttonTypeSaveEdit = document.querySelector('.button_type_save-edit');
 const elementContent = document.querySelector('.elements__content');
 
 // Добавляем новую карточку
