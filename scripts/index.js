@@ -1,3 +1,6 @@
+import {Card} from './Card.js'
+import {FormValidator} from './FormValidator.js'
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -41,90 +44,60 @@ const popupDataTypeLocation = document.querySelector('.popup__data_type_location
 const popupDataTypeLink = document.querySelector('.popup__data_type_link');
 const popapTypePhoto = document.querySelector('.popup_type_photo');
 const buttonTypeBigClose = document.querySelector('.button_type_big-close');
-const popupBigPhoto = document.querySelector('.popup__big-photo');
-const popupBigTitle = document.querySelector('.popup__big-title');
 const formEditReset = document.querySelector('#form_reset');
 const Esc = 27;
-
-//Загружаем фото на страницу через массив
-const elementTemplate = document.querySelector('#element-add').content;
+const buttonTypeSaveEdit = document.querySelector('.button_type_save_edit');
 const elementContent = document.querySelector('.elements__content');
 
-//Загружаем фото на страницу через массив
-function createCard (link, name) {
-  const elementCard = elementTemplate.cloneNode(true);
-  elementCard.querySelector('.element__photo').src = link;
-  elementCard.querySelector('.element__subtitle').textContent = name;
-  elementCard.querySelector('.button_type_delete').addEventListener('click', (event) => {
-    const elementContent = event.target.closest('.element');
-    if(elementContent) {
-      elementContent.remove();
-    }
-  });
-  return elementCard;
+// Добавляем новую карточку
+const submitFormCard = (e) => {
+  e.preventDefault();
+  const data = {}
+  data.name = popupDataTypeLocation.value
+  data.link = popupDataTypeLink.value
+  const card = new Card(data, '#element-add')
+  elementContent.prepend(card.generateCard())
+  resetForm(formTypePhoto);
+  closePopup(popupAddTypePhoto);
 }
 
-initialCards.forEach((el) => {
-  elementContent.append(createCard(el.link, el.name));
-});
+formTypePhoto.addEventListener('submit', submitFormCard)
+ 
+// Добавляем все карточки
+initialCards.forEach((item) => {
+  const card = new Card (item, '#element-add') //Передаем объект как аргумент
+  const cardElement = card.generateCard()
+  elementContent.append(cardElement)
+})
 
+const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.popup__data',
+  submitButtonSelector: '.button',
+  inputInvalidClass: 'popup__data_type_error',
+  buttonInvalidClass: 'button_type_inactive',
+  disableButtonInvalid: 'button_type_inactive'
+};
 
+//Валидация формы профиля
+const FormValidateProfile = new FormValidator(validationConfig, '.form_type_edit')
+FormValidateProfile.enableValidation();
 
-const addPhoto = createCard(popupDataTypeLink.value, popupDataTypeLocation.value);
+//Валидация формы фото
+const FormValidatePhoto = new FormValidator(validationConfig, '.form_type_photo')
+FormValidatePhoto.enableValidation();
+  
+
 
 //Открываем попап
 function popupOpen(popapOpen) {
   popapOpen.classList.add('popup_opened'); 
- 
 }
+
 //Закрываем попап
 function closePopup(popapClose) {
   popapClose.classList.remove('popup_opened');
- 
 }
-
-//Добавляем карточки
-function addPhotoForm(event) {
-  event.preventDefault();
-  const addPhoto = createCard(popupDataTypeLink.value, popupDataTypeLocation.value);
-  elementContent.prepend(addPhoto);
-  popupDataTypeLink.value = '';
-  popupDataTypeLocation.value = '';
-  closePopup(popupAddTypePhoto);
-}
-
-//Открыть фото
-const openPopupPhoto = (event) => {
-  if (event.target.classList.contains('element__photo')) {
-    popupBigPhoto.src = event.target.src;
-    const elementSubtitle = event.target.closest('.element').querySelector('.element__subtitle');
-    popupBigTitle.textContent = elementSubtitle.textContent;
-    popupOpen(popapTypePhoto);
-  }
-};
-elementContent.addEventListener('click', openPopupPhoto);
-//
-
-//Поставить лайк
-const addLike = (event) => {
-  const btnAddLike = event.target.classList.contains('button_type_like');
-  if(btnAddLike) {
-    event.target.classList.toggle('button_type_like_active');
-  }
-};
-elementContent.addEventListener('click', addLike);
-//
-
-//Удаляем карточки
-const delitCard = (event) => {
-  const btnDelitCard = event.target.classList.contains('button_type_delete');
-  if(btnDelitCard) {
-    event.target.closest('.element').remove();
-  }
-};
-
-elementContent.addEventListener('click', delitCard);
-//
 
 //добавляем данные в value со страницы
 function setInputValue() {
@@ -142,6 +115,7 @@ function resetForm(element) {
    input.classList.remove('popup__data_type_error');
   })
 }
+
 //Функция закрывает форму клик по фону//
 function handlePopupClick(evt) {
   if(evt.target.classList.contains('popup')) {
@@ -173,41 +147,41 @@ function closePopupEsc (evt) {
   if(evt.keyCode === Esc){
     resetForm(formEditReset);
     resetForm(formTypePhoto);
-    closePopup(popupTypeEdit);
-    closePopup(popupAddTypePhoto);
-    closePopup(popapTypePhoto);
+    const popupActive = document.querySelector('.popup_opened')
+    closePopup(popupActive)
+    }
   }
-}
 
 //Открываем попап//
-buttonTypeEdit.addEventListener('click', function() {
-  popupOpen(popupTypeEdit);
+buttonTypeEdit.addEventListener('click', () => {
   setInputValue();
+  FormValidateProfile.removeDisabledButton (buttonTypeSaveEdit)
+  popupOpen(popupTypeEdit);
 });
 
 buttonTypeAddCard.addEventListener('click', function() {
-  popupOpen(popupAddTypePhoto);
+ popupOpen(popupAddTypePhoto);
 });
 
 //Закрываем попап//
 buttonTypeClose.addEventListener('click', function () {
   resetForm(formEditReset);
   closePopup(popupTypeEdit);
- 
 });
+
 buttonTypeClosePhoto.addEventListener('click', function() {
   resetForm(formTypePhoto);
   closePopup(popupAddTypePhoto);
-  
 });
+
 buttonTypeBigClose.addEventListener('click', function() {
   closePopup(popapTypePhoto);
 });
+
 //Слушатель кнопок
 formElement.addEventListener('submit', handleFormSubmit);
-formTypePhoto.addEventListener('submit',addPhotoForm)
+formTypePhoto.addEventListener('submit',submitFormCard)
   
- 
 //Закрытие попап по фону
 popupTypeEdit.addEventListener('click', handlePopupClick);
 popupAddTypePhoto.addEventListener('click', closePopupPhoto);
@@ -215,7 +189,6 @@ popapTypePhoto.addEventListener('click', closePopupBigPhoto);
 
 // Закрытие попап Esc
 document.addEventListener('keydown',closePopupEsc);
-
 
 
 
