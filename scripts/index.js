@@ -108,7 +108,7 @@ function setInputValue() {
 // Сбрасываем форму
 function resetForm(element) {
   element.reset();
-  element.querySelectorAll('.popup__data_error').forEach((span) => {
+  element.querySelectorAll('.popup__data-error').forEach((span) => {
     span.textContent ='';
   })
   element.querySelectorAll('.popup__data').forEach((input) => {
