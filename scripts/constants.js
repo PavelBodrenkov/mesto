@@ -20,4 +20,4 @@ export const elementContent = document.querySelector('.elements__content');
 export const popupTypePhoto = document.querySelector('.popup_type_photo');
 export const popupBigPhoto = document.querySelector('.popup__big-photo');
 export const popupBigTitle = document.querySelector('.popup__big-title');
-
+export const buttonTypeSaveAdd = document.querySelector('.button_type_save-add');

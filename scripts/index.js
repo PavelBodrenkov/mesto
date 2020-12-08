@@ -4,7 +4,7 @@ import {openPopup} from './utils.js';
 import {closePopup} from './utils.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeClose, buttonTypeClosePhoto, buttonTypeEdit, profileName, 
   profileSubtitle, popupDataTypeName, popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit, popupDataTypeLocation,
-  popupDataTypeLink, popapTypePhoto, buttonTypeBigClose, Esc, buttonTypeSaveEdit, elementContent} from './constants.js';
+  popupDataTypeLink, popapTypePhoto, buttonTypeBigClose, Esc, buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd} from './constants.js';
 import {initialCards} from './initialCards.js'
 
 // Добавляем новую карточку
@@ -52,21 +52,12 @@ function setInputValue() {
   popupDataTypeJob.value = profileSubtitle.textContent;
 }
 
-// // Сбрасываем форму
-// function resetForm(element) {
-//   element.reset();
-//   element.querySelectorAll('.popup__data-error').forEach((span) => {
-//     span.textContent ='';
-//   })
-//   element.querySelectorAll('.popup__data').forEach((input) => {
-//    input.classList.remove('popup__data_type_error');
-//   })
-// }
-
 // закрываем попап клик по фону
 function closeByOverlayClick (evt) {
   if(evt.target.classList.contains('popup_opened')) {
     const openedPopup = document.querySelector('.popup_opened')
+    formValidatePhoto.disabledButton(buttonTypeSaveAdd)
+    formValidatePhoto.resetForm (formTypePhoto)
     closePopup(openedPopup);
   }
 }
@@ -88,6 +79,7 @@ function closePopupEsc (evt) {
     }
     if(formTypePhoto) {
       formValidatePhoto.resetForm (formTypePhoto)
+      formValidatePhoto.disabledButton(buttonTypeSaveAdd)
     }  
     closePopup(popupActive)
     }
@@ -115,6 +107,7 @@ buttonTypeClose.addEventListener('click', function () {
 
 buttonTypeClosePhoto.addEventListener('click', function() {
   formValidatePhoto.resetForm (formTypePhoto)
+  formValidatePhoto.disabledButton(buttonTypeSaveAdd)
   closePopup(popupAddTypePhoto);
   document.removeEventListener('keydown',closePopupEsc);
 });
