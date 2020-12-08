@@ -37,7 +37,7 @@
         <!--Попап профиля-->
         <div class="popup popup_type_edit">
             <div class="popup__conteiner">
-                    <form  action="#" id="form_reset" class="form form_type_edit"  name="popup" novalidate>
+                    <form  action="#" id="form_reset" class="form form_type_edit"  name="popup-edit" novalidate>
                        <h2 class="popup__title">Редактировать профиль</h2>
                         <input id="text-input" class="popup__data popup__data_type_name" type="text" name="name" value="" minlength="2" maxlength="40" required>
                         <span id="text-input-error" class="popup__data-error"></span>
@@ -53,7 +53,7 @@
         <div class="popup popup_add_type-photo">
             <div class="popup__conteiner popup__conteiner_type_photo">
                 <h2 class="popup__title popup__title_type_photo">Новое место</h2>
-                    <form action="#" class="form form_type_photo" name="popup" novalidate>
+                    <form action="#" class="form form_type_photo" name="popup-photo" novalidate>
                         <input id="photo-input" class="popup__data popup__data_photo popup__data_type_location" type="text" name="point" value="" placeholder="Название" minlength="2" maxlength="30" required>
                         <span id="photo-input-error" class="popup__data-error"></span>
                         <input id="url-input" class="popup__data popup__data_photo popup__data_type_link" type="url" name="photo" value="" placeholder="Ссылка на картинку" required>
@@ -85,7 +85,6 @@
     </template>
     <!--End Карточки-->
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
+    
 </body>
 </html>

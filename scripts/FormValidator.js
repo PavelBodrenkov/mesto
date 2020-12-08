@@ -17,6 +17,7 @@ export class FormValidator {
 
     // Убираем оповещение об ошибках
     _hideInputError (input, formElement) {
+        formElement.reset()
         const errorElement = formElement.querySelector(`#${input.id}-error`);
         input.classList.remove(this._inputInvalidClass);
         errorElement.textContent = '';
@@ -56,6 +57,15 @@ export class FormValidator {
         buttonElement.classList.remove(this._disableButtonInvalid)
         buttonElement.disabled = false;
     }
+
+    // Сбрасываем форму
+    resetForm (formElement) {
+        const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
+        inputList.forEach((input) => {
+            this._hideInputError(input, formElement)
+        })
+    }
+    
 
     // Добавляем слушатель всем полям
     _setEventListeners (formElement, buttonElement) {

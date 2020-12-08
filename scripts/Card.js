@@ -1,3 +1,8 @@
+import {openPopup} from './utils.js'
+import{popupTypePhoto} from './constants.js'
+import{popupBigPhoto} from './constants.js'
+import{popupBigTitle} from './constants.js'
+
 export class Card {
     constructor (data, cardSelector) {
       this._name = data.name
@@ -24,8 +29,8 @@ export class Card {
     }
   
     _setEventListeners () {
-      this._element.querySelector('.button_type_delete').addEventListener('click', (evt) => {
-        this._deliteCard (evt)
+      this._element.querySelector('.button_type_delete').addEventListener('click', () => {
+        this._deliteCard ()
       })
   
       this._element.querySelector('.button_type_like').addEventListener('click', () => {
@@ -34,15 +39,11 @@ export class Card {
   
       this._element.querySelector('.element__photo').addEventListener('click', () => {
         this._showPhoto ()
-        
       })
     }
     //  Удаляем карточки
-    _deliteCard (evt) {
-      const elementContent = evt.target.closest('.element')
-      if(elementContent) {
-        elementContent.remove();
-      }
+    _deliteCard () {
+      this._element.remove();
     }
   // добавляем лайк
     _hendleAddLike (evt) {
@@ -50,9 +51,9 @@ export class Card {
     }
   // Открываем фото
     _showPhoto () {
-      document.querySelector('.popup__big-photo').src = this._link
-      document.querySelector('.popup__big-title').textContent = this._name
-      document.querySelector('.popup_type_photo').classList.add('popup_opened')
+      popupBigPhoto.src = this._link
+      popupBigTitle.textContent = this._name
+      openPopup(popupTypePhoto);
     }
 }
     
