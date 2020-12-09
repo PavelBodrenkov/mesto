@@ -1,10 +1,9 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-import {openPopup} from './utils.js';
-import {closePopup} from './utils.js';
+import {openPopup, closePopup, closeByOverlayClick} from './utils.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeClose, buttonTypeClosePhoto, buttonTypeEdit, profileName, 
-  profileSubtitle, popupDataTypeName, popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit, popupDataTypeLocation,
-  popupDataTypeLink, popapTypePhoto, buttonTypeBigClose, Esc, buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd} from './constants.js';
+        profileSubtitle, popupDataTypeName, popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit, popupDataTypeLocation,
+        popupDataTypeLink, popapTypePhoto, buttonTypeBigClose, Esc, buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd} from './constants.js';
 import {initialCards} from './initialCards.js'
 
 // Добавляем новую карточку
@@ -21,7 +20,6 @@ const submitFormCard = (e) => {
 // Создание карточки
 function addCard (element)  {
   const card = new Card(element, '#element-add')
-  card.generateCard();
   return card.generateCard();
 }
 
@@ -39,27 +37,17 @@ const validationConfig = {
 };
 
 //Валидация формы профиля
-const formValidateProfile = new FormValidator(validationConfig, '.form_type_edit')
+const formValidateProfile = new FormValidator(validationConfig, '.form_type_edit');
 formValidateProfile.enableValidation();
 
 //Валидация формы фото
-const formValidatePhoto = new FormValidator(validationConfig, '.form_type_photo')
+const formValidatePhoto = new FormValidator(validationConfig, '.form_type_photo');
 formValidatePhoto.enableValidation();
   
 //добавляем данные в value со страницы
 function setInputValue() {
   popupDataTypeName.value = profileName.textContent;
   popupDataTypeJob.value = profileSubtitle.textContent;
-}
-
-// закрываем попап клик по фону
-function closeByOverlayClick (evt) {
-  if(evt.target.classList.contains('popup_opened')) {
-    const openedPopup = document.querySelector('.popup_opened')
-    formValidatePhoto.disabledButton(buttonTypeSaveAdd)
-    formValidatePhoto.resetForm (formTypePhoto)
-    closePopup(openedPopup);
-  }
 }
 
 function handleFormSubmit(evt) {
@@ -69,47 +57,29 @@ function handleFormSubmit(evt) {
   closePopup(popupTypeEdit);
 }
 
-
-//Закрываем по нажатию Esc
-function closePopupEsc (evt) {
-  if(evt.keyCode === Esc){
-    const popupActive = document.querySelector('.popup_opened')
-    if(formTypeEdit) {
-      formValidateProfile.resetForm (formTypeEdit)
-    }
-    if(formTypePhoto) {
-      formValidatePhoto.resetForm (formTypePhoto)
-      formValidatePhoto.disabledButton(buttonTypeSaveAdd)
-    }  
-    closePopup(popupActive)
-    }
-  }
-
 //Открываем попап//
 buttonTypeEdit.addEventListener('click', () => {
+  formValidateProfile.removeDisabledButton (buttonTypeSaveEdit);
+  formValidateProfile.resetForm (formTypeEdit);
   setInputValue();
-  formValidateProfile.removeDisabledButton (buttonTypeSaveEdit)
   openPopup(popupTypeEdit);
-  document.addEventListener('keydown',closePopupEsc);
 });
 
 buttonTypeAddCard.addEventListener('click', function() {
   openPopup(popupAddTypePhoto);
-  document.addEventListener('keydown',closePopupEsc);
+  formValidatePhoto.disabledButton(buttonTypeSaveAdd);
+  formValidatePhoto.resetForm (formTypePhoto);
 });
 
 //Закрываем попап//
 buttonTypeClose.addEventListener('click', function () {
-  formValidateProfile.resetForm (formTypeEdit)
   closePopup(popupTypeEdit);
-  document.removeEventListener('keydown',closePopupEsc);
 });
 
 buttonTypeClosePhoto.addEventListener('click', function() {
-  formValidatePhoto.resetForm (formTypePhoto)
-  formValidatePhoto.disabledButton(buttonTypeSaveAdd)
+  formValidatePhoto.resetForm (formTypePhoto);
+  formValidatePhoto.disabledButton(buttonTypeSaveAdd);
   closePopup(popupAddTypePhoto);
-  document.removeEventListener('keydown',closePopupEsc);
 });
 
 buttonTypeBigClose.addEventListener('click', function() {
@@ -118,10 +88,12 @@ buttonTypeBigClose.addEventListener('click', function() {
 
 //Слушатель кнопок
 formTypeEdit.addEventListener('submit', handleFormSubmit);
-formTypePhoto.addEventListener('submit',submitFormCard)
+formTypePhoto.addEventListener('submit',submitFormCard);
   
 //Закрытие попап по фону
-document.addEventListener('click', closeByOverlayClick);
+popupTypeEdit.addEventListener('click', closeByOverlayClick);
+popupAddTypePhoto.addEventListener('click', closeByOverlayClick);
+popapTypePhoto.addEventListener('click', closeByOverlayClick);
 
 
 

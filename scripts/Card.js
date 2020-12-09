@@ -56,7 +56,7 @@ export class Card {
       openPopup(popupTypePhoto);
     }
 }
-    
+
 
 
 
