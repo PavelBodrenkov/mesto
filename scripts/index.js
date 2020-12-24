@@ -1,32 +1,71 @@
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
-import {openPopup, closePopup, closeByOverlayClick} from './utils.js';
-import {popupTypeEdit, popupAddTypePhoto, buttonTypeClose, buttonTypeClosePhoto, buttonTypeEdit, profileName, 
-        profileSubtitle, popupDataTypeName, popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit, popupDataTypeLocation,
-        popupDataTypeLink, popapTypePhoto, buttonTypeBigClose, Esc, buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd} from './constants.js';
-import {initialCards} from './initialCards.js'
+import PopupWithImage from './components/PopupWithImage.js';
+import Popup from './components/Popup.js';
+import Section from './components/Section.js';
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
+        popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
+        buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, } from './constants.js';
+import {initialCards} from './constants.js';
+import UserInfo from './components/UserInfo.js';
+import PopupWithForm from './components/PopupWithForm.js';
 
-// Добавляем новую карточку
-const submitFormCard = (e) => {
-  e.preventDefault();
-  const data = {}
-  data.name = popupDataTypeLocation.value
-  data.link = popupDataTypeLink.value
-  elementContent.prepend(addCard(data))
-  formValidatePhoto.resetForm (formTypePhoto)
-  closePopup(popupAddTypePhoto);
+// Создаем карточки
+const cardList = new Section (initialCards, renderer, elementContent)  
+function renderer (item) {
+  const card = new Card({data: item, handleCardClick: () => {
+    const popupWithImage = new PopupWithImage (item, popupTypePhoto);
+    popupWithImage.open();
+    console.log('handle click card')
+  }}, '#element-add')
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement, true)
 }
+cardList.renderItems();
 
-// Создание карточки
-function addCard (element)  {
-  const card = new Card(element, '#element-add')
-  return card.generateCard();
-}
+//Открытие попапа профиля
+const popupProfile = new Popup (popupTypeEdit);
+popupProfile.setEventListeners();
+buttonTypeEdit.addEventListener('click', () => {
+  formValidateProfile.removeDisabledButton (buttonTypeSaveEdit);
+  formValidateProfile.resetForm (formTypeEdit);
+  // Добавление данных в инпуты
+  const currentUserInfo = userInfoProfile.getUserInfo();
+  popupDataTypeName.value = currentUserInfo.name;
+  popupDataTypeJob.value = currentUserInfo.info;
+  popupProfile.open();
+}) 
 
-// Добавляем все карточки
-initialCards.forEach((item) => {
-  elementContent.append(addCard(item))
+// Открытие попапа карточки
+const popupPhoto = new Popup (popupAddTypePhoto);
+buttonTypeAddCard.addEventListener('click', () => {
+  formValidatePhoto.disabledButton(buttonTypeSaveAdd);
+  formValidatePhoto.resetForm (formTypePhoto);
+  popupPhoto.setEventListeners()
+  popupPhoto.open();
 })
+
+// Добавление данных в профиль
+const userInfoProfile = new UserInfo ({SelectorName: profileName, SelectorProfession: profileSubtitle})
+const popupEditForm = new PopupWithForm (popupTypeEdit, handleEditSubmitt)
+function handleEditSubmitt (item) {
+  console.log(item)
+  userInfoProfile.setUserInfo({name:item['name'], info:item['profession']});
+}
+popupEditForm.setEventListeners()
+
+// Новая карточка
+const popupPhotoForm = new PopupWithForm (popupAddTypePhoto, handleFormSubmit)
+function handleFormSubmit (item) {
+  console.log(item)
+  const card = new Card({data:{name:item['point'], link:item['photo']}, handleCardClick: () => {
+    const popupWithImage = new PopupWithImage ({name:item['point'], link:item['photo']}, popupTypePhoto);
+        popupWithImage.open();
+    }}, '#element-add')
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement, false)
+}
+popupPhotoForm.setEventListeners()
 
 const validationConfig = {
   inputSelector: '.popup__data',
@@ -44,57 +83,6 @@ formValidateProfile.enableValidation();
 const formValidatePhoto = new FormValidator(validationConfig, '.form_type_photo');
 formValidatePhoto.enableValidation();
   
-//добавляем данные в value со страницы
-function setInputValue() {
-  popupDataTypeName.value = profileName.textContent;
-  popupDataTypeJob.value = profileSubtitle.textContent;
-}
-
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent=popupDataTypeName.value;
-  profileSubtitle.textContent=popupDataTypeJob.value;
-  closePopup(popupTypeEdit);
-}
-
-//Открываем попап//
-buttonTypeEdit.addEventListener('click', () => {
-  formValidateProfile.removeDisabledButton (buttonTypeSaveEdit);
-  formValidateProfile.resetForm (formTypeEdit);
-  setInputValue();
-  openPopup(popupTypeEdit);
-});
-
-buttonTypeAddCard.addEventListener('click', function() {
-  openPopup(popupAddTypePhoto);
-  formValidatePhoto.disabledButton(buttonTypeSaveAdd);
-  formValidatePhoto.resetForm (formTypePhoto);
-});
-
-//Закрываем попап//
-buttonTypeClose.addEventListener('click', function () {
-  closePopup(popupTypeEdit);
-});
-
-buttonTypeClosePhoto.addEventListener('click', function() {
-  formValidatePhoto.resetForm (formTypePhoto);
-  formValidatePhoto.disabledButton(buttonTypeSaveAdd);
-  closePopup(popupAddTypePhoto);
-});
-
-buttonTypeBigClose.addEventListener('click', function() {
-  closePopup(popapTypePhoto);
-});
-
-//Слушатель кнопок
-formTypeEdit.addEventListener('submit', handleFormSubmit);
-formTypePhoto.addEventListener('submit',submitFormCard);
-  
-//Закрытие попап по фону
-popupTypeEdit.addEventListener('click', closeByOverlayClick);
-popupAddTypePhoto.addEventListener('click', closeByOverlayClick);
-popapTypePhoto.addEventListener('click', closeByOverlayClick);
-
 
 
 
