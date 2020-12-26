@@ -17,7 +17,7 @@ export default class FormValidator {
 
     // Убираем оповещение об ошибках
     _hideInputError (input, formElement) {
-        
+
         const errorElement = formElement.querySelector(`#${input.id}-error`);
         input.classList.remove(this._inputInvalidClass);
         errorElement.textContent = '';
@@ -66,7 +66,7 @@ export default class FormValidator {
             this._hideInputError(input, formElement)
         })
     }
-    
+
     // Добавляем слушатель всем полям
     _setEventListeners (formElement, buttonElement) {
         const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
@@ -77,7 +77,7 @@ export default class FormValidator {
                 this._toggleButtonState(inputList, buttonElement);
             });
         });
-    };
+    }
 
     // Добавляем слушатель кнопок в формах
     enableValidation ()  {
@@ -88,7 +88,7 @@ export default class FormValidator {
           this.disabledButton(buttonElement);
         })
         this._setEventListeners(formElement, buttonElement);
-        
+
     }
 }
 
