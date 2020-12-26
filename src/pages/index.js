@@ -49,15 +49,17 @@ buttonTypeAddCard.addEventListener('click', () => {
 
 // Добавление данных в профиль
 const userInfoProfile = new UserInfo ({SelectorName: profileName, SelectorProfession: profileSubtitle})
-const popupEditForm = new PopupWithForm ({popupSelector:popupTypeEdit, handleEditSubmit: (item) => {
+const popupEditForm = new PopupWithForm (popupTypeEdit, handleEditSubmit)
+function handleEditSubmit (item) {
   console.log(item)
   userInfoProfile.setUserInfo({name:item['name'], info:item['profession']});
 }
-})
+
 popupEditForm.setEventListeners()
 
 // Новая карточка
-const popupPhotoForm = new PopupWithForm ({popupSelector:popupAddTypePhoto, handleFormSubmit: (item) => {
+const popupPhotoForm = new PopupWithForm (popupAddTypePhoto, handleFormSubmitt)
+function handleFormSubmitt (item) {
   console.log(item)
   const card = new Card({data:{name:item['point'], link:item['photo']}, handleCardClick: () => {
     const popupWithImage = new PopupWithImage ({name:item['point'], link:item['photo']}, popupTypePhoto);
@@ -65,8 +67,8 @@ const popupPhotoForm = new PopupWithForm ({popupSelector:popupAddTypePhoto, hand
     }}, '#element-add')
   const cardElement = card.generateCard();
   cardList.addItem(cardElement, false)
-}
-})
+  }
+
 popupPhotoForm.setEventListeners()
 
 const validationConfig = {
