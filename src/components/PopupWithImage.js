@@ -7,15 +7,13 @@ export default class PopupWithImage extends Popup{
         super(popupSelector)
         this._name = data.name
         this._link = data.link
-      
+
     }
 
     open () {
         super.open()
         popupBigPhoto.src = this._link
         popupBigTitle.textContent = this._name
-        popupBigPhoto.alt = "изображение `${this._name}`"
-        
     }
-    
+
 }
