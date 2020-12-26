@@ -1,17 +1,19 @@
-import PopupWithImage from './components/PopupWithImage.js';
-import Popup from './components/Popup.js';
-import Section from './components/Section.js';
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
+import './index.css';
+
+import PopupWithImage from './../components/PopupWithImage.js';
+import Popup from './../components/Popup.js';
+import Section from './../components/Section.js';
+import Card from './../components/Card.js';
+import FormValidator from './../components/FormValidator.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
         popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
-        buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, } from './constants.js';
-import {initialCards} from './constants.js';
-import UserInfo from './components/UserInfo.js';
-import PopupWithForm from './components/PopupWithForm.js';
+        buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, } from './../utils/constants.js';
+import {initialCards} from './../utils/constants.js';
+import UserInfo from './../components/UserInfo.js';
+import PopupWithForm from './../components/PopupWithForm.js';
 
 // Создаем карточки
-const cardList = new Section (initialCards, renderer, elementContent)  
+const cardList = new Section (initialCards, renderer, elementContent)
 function renderer (item) {
   const card = new Card({data: item, handleCardClick: () => {
     const popupWithImage = new PopupWithImage (item, popupTypePhoto);
@@ -34,7 +36,7 @@ buttonTypeEdit.addEventListener('click', () => {
   popupDataTypeName.value = currentUserInfo.name;
   popupDataTypeJob.value = currentUserInfo.info;
   popupProfile.open();
-}) 
+})
 
 // Открытие попапа карточки
 const popupPhoto = new Popup (popupAddTypePhoto);
@@ -82,14 +84,14 @@ formValidateProfile.enableValidation();
 //Валидация формы фото
 const formValidatePhoto = new FormValidator(validationConfig, '.form_type_photo');
 formValidatePhoto.enableValidation();
-  
 
 
 
 
 
-  
-  
+
+
+
 
 
 

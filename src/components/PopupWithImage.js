@@ -1,6 +1,6 @@
-import{popupBigPhoto} from '../constants.js'
-import{popupBigTitle} from '../constants.js'
-import Popup from './Popup.js';
+import{popupBigPhoto} from './../utils/constants.js'
+import{popupBigTitle} from './../utils/constants.js'
+import Popup from './../components/Popup.js';
 
 export default class PopupWithImage extends Popup{
     constructor (data, popupSelector) {
