@@ -7,8 +7,7 @@ import Card from './../components/Card.js';
 import FormValidator from './../components/FormValidator.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
         popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
-        buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, } from './../utils/constants.js';
-import {initialCards} from './../utils/constants.js';
+        buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, initialCards} from './../utils/constants.js';
 import UserInfo from './../components/UserInfo.js';
 import PopupWithForm from './../components/PopupWithForm.js';
 
