@@ -5,34 +5,34 @@ export default class Card {
       this._cardSelector = cardSelector
       this._handleCardClick = handleCardClick
     }
-  
+
     _getTemplate () {
-      const cardElement = document
-      .querySelector(this._cardSelector)
+      const cardElement = this._cardSelector
       .content
       .querySelector('.element')
       .cloneNode(true)
       return cardElement;
     }
-  
+
     generateCard () {
       this._element = this._getTemplate()
       this._setEventListeners()
       this._element.querySelector('.element__subtitle').textContent = this._name
       this._element.querySelector('.element__photo').src = this._link
+      this._element.querySelector('.element__subtitle').alt = `${this._name}`
       return this._element;
     }
-  
+
     _setEventListeners () {
       this._element.querySelector('.button_type_delete').addEventListener('click', () => {
         this._deliteCard ()
       })
-  
+
       this._element.querySelector('.button_type_like').addEventListener('click', () => {
         this._hendleAddLike ()
       })
-  
-      this._element.querySelector('.element__photo').addEventListener('click', () => {
+      this.photoElement = this._element.querySelector('.element__photo')
+      this.photoElement.addEventListener('click', () => {
         this._handleCardClick()
       })
     }
@@ -44,12 +44,11 @@ export default class Card {
     _hendleAddLike (evt) {
       this._element.querySelector('.button_type_like').classList.toggle('button_type_like_active');
     }
- 
+
 }
 
 
 
 
- 
-  
-  
+
+

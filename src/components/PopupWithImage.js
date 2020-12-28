@@ -1,19 +1,17 @@
-import{popupBigPhoto} from './../utils/constants.js'
-import{popupBigTitle} from './../utils/constants.js'
 import Popup from './../components/Popup.js';
 
 export default class PopupWithImage extends Popup{
-    constructor (data, popupSelector) {
+    constructor (popupSelector) {
         super(popupSelector)
-        this._name = data.name
-        this._link = data.link
-
+        this._popupSelector = popupSelector;
     }
 
-    open () {
+    open (data) {
         super.open()
-        popupBigPhoto.src = this._link
-        popupBigTitle.textContent = this._name
+        this.bigPhoto =  this._popupSelector.querySelector('.popup__big-photo')
+        this.bigTitle =  this._popupSelector.querySelector('.popup__big-title')
+        this.bigPhoto.src = data.link
+        this.bigTitle.textContent = data.name
+        this.bigPhoto.alt = `${data.name}`
     }
-
 }

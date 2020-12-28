@@ -23,6 +23,7 @@ export const popupBigTitle = document.querySelector('.popup__big-title');
 export const buttonTypeSaveAdd = document.querySelector('.button_type_save-add');
 export const elementPhoto = document.querySelector('.element__photo');
 export const elementSubtitle = document.querySelector('.element__subtitle')
+export const elementAdd = document.querySelector('#element-add');
 
 export const initialCards = [
     {
@@ -50,3 +51,11 @@ export const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
+
+  export const validationConfig = {
+    inputSelector: '.popup__data',
+    submitButtonSelector: '.button',
+    inputInvalidClass: 'popup__data_type_error',
+    buttonInvalidClass: 'button_type_inactive',
+    disableButtonInvalid: 'button_type_inactive'
+  };

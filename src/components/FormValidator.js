@@ -6,6 +6,8 @@ export default class FormValidator {
     this._inputInvalidClass = data.inputInvalidClass;
     this._buttonInvalidClass = data.buttonInvalidClass;
     this._disableButtonInvalid = data.disableButtonInvalid;
+    this._formElement = this._formSelector;
+
     }
 
     // Добовляем оповещение об ошибках
@@ -81,14 +83,13 @@ export default class FormValidator {
 
     // Добавляем слушатель кнопок в формах
     enableValidation ()  {
-    const formElement = document.querySelector(this._formSelector);
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
-    formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
+      const formElement = this._formElement
+      const buttonElement = formElement.querySelector(this._submitButtonSelector);
+      formElement.addEventListener('submit', (evt) => {
+          evt.preventDefault();
           this.disabledButton(buttonElement);
-        })
-        this._setEventListeners(formElement, buttonElement);
-
+      })
+      this._setEventListeners(formElement, buttonElement);
     }
 }
 
