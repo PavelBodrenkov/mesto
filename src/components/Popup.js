@@ -1,24 +1,24 @@
 import {Esc} from './../utils/constants.js'
 export default class Popup {
-    constructor (popupSelector) {
-        this._popupSelector = popupSelector;
+    constructor (popupElement) {
+        this._popupElement = popupElement;
         this._handleEscClose = this._handleEscClose.bind(this);
         this._closeByOverlayClick = this._closeByOverlayClick.bind(this);
-        this._buttonClose = this._buttonClose.bind(this);
+        this._closeByClickButton = this._closeByClickButton.bind(this);
     }
 
     open () {
-        this._popupSelector.classList.add('popup_opened');
+        this._popupElement.classList.add('popup_opened');
        document.addEventListener('keydown', this._handleEscClose)
-       this._popupSelector.addEventListener('click', this._closeByOverlayClick)
+       this._popupElement.addEventListener('click', this._closeByOverlayClick)
     }
 
 
 
     close () {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popupElement.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose)
-        this._popupSelector.removeEventListener('click', this._closeByOverlayClick)
+        this._popupElement.removeEventListener('click', this._closeByOverlayClick)
     }
 
     _handleEscClose (evt) {
@@ -33,13 +33,13 @@ export default class Popup {
       }
     }
 
-    _buttonClose (evt) {
+    _closeByClickButton (evt) {
       if(evt.target.classList.contains('button_type_close')) {
         this.close();
       }
     }
 
     setEventListeners () {
-      this._popupSelector.addEventListener('click', this._buttonClose)
+      this._popupElement.addEventListener('click', this._closeByClickButton)
     }
 }

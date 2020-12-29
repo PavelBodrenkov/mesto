@@ -13,18 +13,20 @@ import PopupWithForm from './../components/PopupWithForm.js';
 const bigPhoto = new PopupWithImage (popupTypePhoto)
 bigPhoto.setEventListeners()
 
-function creatCard (item, isPrepened) {
+function createCard (item) {
   const card = new Card({data: item, handleCardClick: () => {
     console.log(item)
     bigPhoto.open(item)
   }}, elementAdd)
   const cardElement = card.generateCard();
-  cardList.addItem(cardElement, isPrepened)
+  return cardElement;
 }
 
 // Создаем карточки из массива
 const cardList = new Section ({items:initialCards, renderer: (item) =>{
-  creatCard (item, true)
+  createCard (item)
+  const element = createCard(item)
+  cardList.addItem(element, true)
 }}, elementContent)
 cardList.renderItems();
 
@@ -49,16 +51,18 @@ buttonTypeAddCard.addEventListener('click', () => {
 
 // Добавление данных в профиль
 const userInfoProfile = new UserInfo ({selectorName: profileName, selectorProfession: profileSubtitle})
-const popupEditForm = new PopupWithForm ({popupSelector:popupTypeEdit, handleFormSubmit: (item) => {
+const popupEditForm = new PopupWithForm ({popupElement:popupTypeEdit, handleFormSubmit: (item) => {
   console.log(item)
   userInfoProfile.setUserInfo({name:item['name'], info:item['profession']});
 }})
 popupEditForm.setEventListeners()
 
 // Новая карточка
-const popupPhotoForm = new PopupWithForm ({popupSelector: popupAddTypePhoto, handleFormSubmit: (item) => {
+const popupPhotoForm = new PopupWithForm ({popupElement: popupAddTypePhoto, handleFormSubmit: (item) => {
   console.log(item)
-  creatCard ({name:item.point, link:item.photo}, false)
+  createCard ({name:item.point, link:item.photo})
+  const element = createCard({name:item.point, link:item.photo})
+  cardList.addItem(element, false)
 }})
 popupPhotoForm.setEventListeners()
 

@@ -17,9 +17,10 @@ export default class Card {
     generateCard () {
       this._element = this._getTemplate()
       this._setEventListeners()
-      this._element.querySelector('.element__subtitle').textContent = this._name
-      this._element.querySelector('.element__photo').src = this._link
-      this._element.querySelector('.element__subtitle').alt = `${this._name}`
+      this._subtitleElement = this._element.querySelector('.element__subtitle')
+      this._subtitleElement.textContent = this._name
+      this.photoElement.src = this._link
+      this.photoElement.alt = `${this._name}`
       return this._element;
     }
 
