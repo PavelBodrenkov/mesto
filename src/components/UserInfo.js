@@ -1,6 +1,5 @@
 export default class UserInfo {
     constructor ({selectorName, selectorProfession}) {
-
         this._name = selectorName
         this._job = selectorProfession
     }

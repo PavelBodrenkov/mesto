@@ -4,6 +4,9 @@ export default class Card {
       this._link = data.link
       this._cardSelector = cardSelector
       this._handleCardClick = handleCardClick
+
+
+
     }
 
     _getTemplate () {
@@ -25,10 +28,17 @@ export default class Card {
     }
 
     _setEventListeners () {
-      this._element.querySelector('.button_type_delete').addEventListener('click', () => {
-        this._deliteCard ()
-      })
+      //  this._element.querySelector('.button_type_delete').addEventListener('click', () => {
 
+      //  })
+      //   super.setEventListeners()
+      //   super.open()
+      //   this._formElement.addEventListener('submit', (evt) => {
+      //     evt.preventDefault()
+      //     this._deleteCard ()
+      //     super.close()
+      //   })
+      // })
       this._element.querySelector('.button_type_like').addEventListener('click', () => {
         this._hendleAddLike ()
       })
@@ -38,14 +48,13 @@ export default class Card {
       })
     }
     //  Удаляем карточки
-    _deliteCard () {
+    _deleteCard () {
       this._element.remove();
     }
   // добавляем лайк
-    _hendleAddLike (evt) {
+    _hendleAddLike () {
       this._element.querySelector('.button_type_like').classList.toggle('button_type_like_active');
     }
-
 }
 
 

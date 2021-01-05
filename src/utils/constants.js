@@ -22,8 +22,16 @@ export const popupBigPhoto = document.querySelector('.popup__big-photo');
 export const popupBigTitle = document.querySelector('.popup__big-title');
 export const buttonTypeSaveAdd = document.querySelector('.button_type_save-add');
 export const elementPhoto = document.querySelector('.element__photo');
-export const elementSubtitle = document.querySelector('.element__subtitle')
+export const elementSubtitle = document.querySelector('.element__subtitle');
 export const elementAdd = document.querySelector('#element-add');
+export const buttonTypeDelete = document.querySelector('.button_type_delete');
+export const popupDelete = document.querySelector('.popup_delete');
+export const popupAvatar = document.querySelector('.popup_avatar');
+export const profileAvatarContainer = document.querySelector('.profile__avatar_container');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const formTypeAvatar = document.querySelector ('.form_type_avatar');
+export const elementP = document.querySelector('.element');
+
 
 export const initialCards = [
     {
