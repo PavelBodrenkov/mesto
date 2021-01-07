@@ -7,10 +7,10 @@ import FormValidator from './../components/FormValidator.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
         popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
         buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, initialCards, elementAdd, validationConfig,
-        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, element} from './../utils/constants.js';
+        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, element, formTypeDelete} from './../utils/constants.js';
 import UserInfo from './../components/UserInfo.js';
 import PopupWithForm from './../components/PopupWithForm.js';
-
+import PopupWidthFormSubmit from './../components/PopupWidthFormSubmit.js'
 
 const bigPhoto = new PopupWithImage (popupTypePhoto)
 bigPhoto.setEventListeners()
@@ -68,12 +68,18 @@ const popupPhotoForm = new PopupWithForm ({popupElement: popupAddTypePhoto, hand
   const deliteButon = document.createElement('button')
   deliteButon.className = 'button button_type_delete';
   element.prepend(deliteButon)
-  deliteButon.addEventListener('click', (evt) => {
-    if(deliteButon) {
-      evt.target.closest('.element').remove()
 
-    }
-  })
+  const popupWidthFormSubmit = new PopupWidthFormSubmit ({popupElement: popupDelete, element:deliteButon, handleDeleteIconClick: () => {
+  //   formTypeDelete.addEventListener('submit', (evt) => {
+  //     console.log('submit')
+  //     evt.preventDefault()
+  //      const element = document.querySelector('.element')
+  //     element.remove()
+  //    popupWidthFormSubmit.close()
+
+  // })
+  }})
+  popupWidthFormSubmit.setEventListeners()
 }})
 popupPhotoForm.setEventListeners()
 

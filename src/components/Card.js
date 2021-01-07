@@ -28,20 +28,23 @@ export default class Card {
     }
 
     _setEventListeners () {
-      //  this._element.querySelector('.button_type_delete').addEventListener('click', () => {
+      this._likes = this._element.querySelector('.button_type_like');
+      let likeCount = this._element.querySelector('.element__counter_like').innerHTML;
 
-      //  })
-      //   super.setEventListeners()
-      //   super.open()
-      //   this._formElement.addEventListener('submit', (evt) => {
-      //     evt.preventDefault()
-      //     this._deleteCard ()
-      //     super.close()
-      //   })
-      // })
-      this._element.querySelector('.button_type_like').addEventListener('click', () => {
-        this._hendleAddLike ()
-      })
+        this._likes.addEventListener('click', () => {
+          if(this._likes.classList.contains('button_type_like_active')) {
+            this._likes.classList.remove('button_type_like_active')
+            --likeCount
+            if(likeCount === 0) {
+              likeCount = ""
+            }
+          }else {
+            this._likes.classList.add('button_type_like_active')
+            ++likeCount
+          }
+          this._element.querySelector('.element__counter_like').innerHTML = likeCount
+      });
+
       this.photoElement = this._element.querySelector('.element__photo')
       this.photoElement.addEventListener('click', () => {
         this._handleCardClick()
@@ -52,9 +55,10 @@ export default class Card {
       this._element.remove();
     }
   // добавляем лайк
-    _hendleAddLike () {
-      this._element.querySelector('.button_type_like').classList.toggle('button_type_like_active');
-    }
+    // _hendleAddLike () {
+    //  this._likes.classList.toggle('button_type_like_active');
+
+    // }
 }
 
 

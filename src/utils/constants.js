@@ -31,6 +31,7 @@ export const profileAvatarContainer = document.querySelector('.profile__avatar_c
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const formTypeAvatar = document.querySelector ('.form_type_avatar');
 export const elementP = document.querySelector('.element');
+export const formTypeDelete = document.querySelector('.form_type_delete')
 
 
 export const initialCards = [
