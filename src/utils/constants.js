@@ -30,7 +30,7 @@ export const popupAvatar = document.querySelector('.popup_avatar');
 export const profileAvatarContainer = document.querySelector('.profile__avatar_container');
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const formTypeAvatar = document.querySelector ('.form_type_avatar');
-export const elementP = document.querySelector('.element');
+export const element = document.querySelector('.element');
 export const formTypeDelete = document.querySelector('.form_type_delete')
 
 

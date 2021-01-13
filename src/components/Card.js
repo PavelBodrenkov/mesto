@@ -4,8 +4,9 @@ export default class Card {
       this._link = data.link
       this._cardSelector = cardSelector
       this._handleCardClick = handleCardClick
+      // this._owner = (data.owner._id === utils)
 
-
+    //  console.log(data.owner._id)
 
     }
 
@@ -28,37 +29,50 @@ export default class Card {
     }
 
     _setEventListeners () {
+      // if(this._owner) {
+      //   console.log('ggg')
+      // }else {
+      //   console.log(false)
+      // }
+
       this._likes = this._element.querySelector('.button_type_like');
-      let likeCount = this._element.querySelector('.element__counter_like').innerHTML;
-
-        this._likes.addEventListener('click', () => {
-          if(this._likes.classList.contains('button_type_like_active')) {
-            this._likes.classList.remove('button_type_like_active')
-            --likeCount
-            if(likeCount === 0) {
-              likeCount = ""
-            }
-          }else {
-            this._likes.classList.add('button_type_like_active')
-            ++likeCount
-          }
-          this._element.querySelector('.element__counter_like').innerHTML = likeCount
+      this._likes.addEventListener('click', () => {
+        this._hendleAddLike()
       });
-
       this.photoElement = this._element.querySelector('.element__photo')
       this.photoElement.addEventListener('click', () => {
         this._handleCardClick()
       })
+
+        // this._element.querySelector('.button_type_delete').addEventListener('click', () => {
+        //   this._deleteCard()
+        //   this._element.querySelector('.button_type_delete').style.visibility = 'visible'
+        // })
+
+
+
+
     }
     //  Удаляем карточки
-    _deleteCard () {
-      this._element.remove();
-    }
-  // добавляем лайк
-    // _hendleAddLike () {
-    //  this._likes.classList.toggle('button_type_like_active');
-
+    // _deleteCard () {
+    //   this._element.remove();
     // }
+  // добавляем лайк
+  _hendleAddLike() {
+    this._likeCount = this._element.querySelector('.element__counter_like').textContent;
+    if (this._likes.classList.contains('button_type_like_active')) {
+      this._likes.classList.remove('button_type_like_active')
+      --this._likeCount
+      if (this._likeCount === 0) {
+        this._element.querySelector('.element__counter_like').style.display = 'none'
+      }
+    } else {
+      this._likes.classList.add('button_type_like_active')
+      ++this._likeCount
+      this._element.querySelector('.element__counter_like').style.display = 'block'
+    }
+    this._element.querySelector('.element__counter_like').textContent = this._likeCount
+  }
 }
 
 

@@ -1,6 +1,6 @@
 import Popup from './Popup.js'
 export default class PopupWidthFormSubmit extends Popup {
-  constructor({popupElement, element, handleDeleteIconClick}) {
+  constructor({popupElement, element}) {
     super(popupElement)
     this._popupElement = popupElement
     this._element = element
@@ -9,20 +9,14 @@ export default class PopupWidthFormSubmit extends Popup {
   }
 
   setEventListeners () {
-
     this._element.addEventListener('click', () => {
       super.open()
       this._formElement.addEventListener('submit', (evt) => {
         console.log('submit')
         evt.preventDefault()
-        //  const element = document.querySelector('.element')
-        // element.remove()
         this._element.closest('.element').remove()
-       this.close()
-
-    })
-      // this._handleDeleteIconClick()
-
+        this.close()
+      })
     })
     super.setEventListeners()
   }
