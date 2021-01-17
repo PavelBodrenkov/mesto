@@ -24,6 +24,7 @@ export const buttonTypeSaveAdd = document.querySelector('.button_type_save-add')
 export const elementPhoto = document.querySelector('.element__photo');
 export const elementSubtitle = document.querySelector('.element__subtitle');
 export const elementAdd = document.querySelector('#element-add');
+export const elementAddUser = document.querySelector('#element-adduser')
 export const buttonTypeDelete = document.querySelector('.button_type_delete');
 export const popupDelete = document.querySelector('.popup_delete');
 export const popupAvatar = document.querySelector('.popup_avatar');
@@ -32,6 +33,9 @@ export const profileAvatar = document.querySelector('.profile__avatar');
 export const formTypeAvatar = document.querySelector ('.form_type_avatar');
 export const element = document.querySelector('.element');
 export const formTypeDelete = document.querySelector('.form_type_delete')
+export const userId = '0ab9e035a96b4c33f93c1a9c'
+
+
 
 
 export const initialCards = [

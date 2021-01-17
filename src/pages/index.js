@@ -7,7 +7,7 @@ import FormValidator from './../components/FormValidator.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
         popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
         buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, initialCards, elementAdd, validationConfig,
-        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, element, formTypeDelete} from './../utils/constants.js';
+        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, element, formTypeDelete, userId, elementAddUser, buttonTypeDelete} from './../utils/constants.js';
 import UserInfo from './../components/UserInfo.js';
 import PopupWithForm from './../components/PopupWithForm.js';
 import PopupWidthFormSubmit from './../components/PopupWidthFormSubmit.js'
@@ -18,18 +18,65 @@ import Api from './../components/Api.js'
 const bigPhoto = new PopupWithImage (popupTypePhoto)
 bigPhoto.setEventListeners()
 
-// Функция создания карточек
-function createCard (item) {
-  const card = new Card({data: item, handleCardClick: () => {
-    console.log(item)
-    bigPhoto.open(item)
-  }}, elementAdd)
-  const cardElement = card.generateCard();
-  return cardElement;
+function createCard ({data, handleCardClick, hendelDeleteClick, hendleAddLikeClick}, cardSelector) {
+  const card = new Card ({data, handleCardClick, hendelDeleteClick, hendleAddLikeClick}, cardSelector)
+  return card
 }
 
+
+// Функция создания карточек
+// function createCard (item) {
+//
+//  const card = new Card(
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// }
+
 // Создаем карточки из массива
- const cardList = new Section ({}, elementContent)
+const cardList = new Section ({renderer: (item) =>{
+    const card = createCard ({data: item,
+    handleCardClick: () => {
+    console.log(item)
+    bigPhoto.open(item)
+
+    }, hendelDeleteClick: (item) => {
+      const popupWidthFormSubmit = new PopupWidthFormSubmit ({popupElement: popupDelete})
+      popupWidthFormSubmit.setEventListeners()
+      formTypeDelete.addEventListener('submit', (evt) => {
+      evt.preventDefault()
+      api.deleteAddCard(item)
+      .then(() => card.deleteCard())
+      .catch(err => console.log('ошибка'))
+      popupWidthFormSubmit.close()
+      })
+
+    }, hendleAddLikeClick: (cardId, isLiked, data) => {
+      if(isLiked === false) {
+        api.addLike(cardId)
+        .then(res => {
+          data(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+      }else {
+        api.deleteLike(cardId)
+        .then(res => {
+          data(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+
+    },
+
+  }, elementAdd, userInfoProfile.getUserInfo().id)
+  cardList.addItem(card.generateCard(), true)
+  }
+
+}, elementContent)
+
 
 
 //Открытие попапа профиля
@@ -52,32 +99,31 @@ buttonTypeAddCard.addEventListener('click', () => {
 })
 
 // Добавление данных в профиль
-const userInfoProfile = new UserInfo ({selectorName: profileName, selectorProfession: profileSubtitle})
+const userInfoProfile = new UserInfo (profileName,  profileSubtitle)
 const popupEditForm = new PopupWithForm ({popupElement:popupTypeEdit, handleFormSubmit: (item) => {
   console.log(item)
-  userInfoProfile.setUserInfo({name:item['name'], info:item['profession']});
+  userInfoProfile.setData({name:item['name'], info:item['profession']});
   api.pathEditProfile({name:item['name'], about:item['profession']})
 }})
 popupEditForm.setEventListeners()
-
+console.log(userInfoProfile.getUserInfo().id)
 // Новая карточка
-const popupPhotoForm = new PopupWithForm ({popupElement: popupAddTypePhoto, handleFormSubmit: (item) => {
-  console.log(item)
-  api.postAddCard({name:item.point, link:item.photo})
-  createCard ({name:item.point, link:item.photo})
-  const element = createCard({name:item.point, link:item.photo})
-  cardList.addItem(element, false)
+const popupPhotoForm = new PopupWithForm({
+  popupElement: popupAddTypePhoto, handleFormSubmit: (item) => {
+    console.log(item)
+    api.postAddCard({ name: item.point, link: item.photo })
+      .then((result) => {
+        console.log(result)
 
+        cardList.renderItems(result)
+        cardList.addItem(card.generateCard(), false)
+        })
 
-
-
-  const popupWidthFormSubmit = new PopupWidthFormSubmit ({popupElement: popupDelete, element:deliteButon})
-
-  popupWidthFormSubmit.setEventListeners()
 }})
 popupPhotoForm.setEventListeners()
-
-
+console.log(userInfoProfile.getUserInfo().id)
+// const popupWidthFormSubmit = new PopupWidthFormSubmit ({popupElement: popupDelete, element:buttonTypeDelete})
+//   popupWidthFormSubmit.setEventListeners()
 
 // Фото Аватара
 const popupOpenAvatar = new PopupWithForm({popupElement: popupAvatar, handleFormSubmit: (item) => {
@@ -108,46 +154,19 @@ const formValidateAvatar = new FormValidator (validationConfig, formTypeAvatar)
 formValidateAvatar.enableValidation();
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
-  headers: {
-    authorization: '175e5d69-964d-4046-a547-a053671ab7db',
-    'Content-Type': 'application/json'
-  }
+  address: 'https://mesto.nomoreparties.co/v1/cohort-19',
+  token: '175e5d69-964d-4046-a547-a053671ab7db',
+         'Content-Type': 'application/json'
 })
 
+
+const user = new UserInfo ()
+
+//Получаем все карточки
 api.getInitialCards()
-.then ((item) => {
-  //  console.log(item)
-    const cardList = new Section ({items:item, renderer: (item) =>{
-    createCard (item)
-    const element = createCard(item)
-    cardList.addItem(element, true)
-  }}, elementContent)
-  cardList.renderItems();
-
-//   const idCard = {
-//     _id: '0ab9e035a96b4c33f93c1a9c'
-//   }
-//   const result = item.forEach((item) =>{
-//     if (item.owner._id === idCard._id){
-//       console.log('Привет')
-//       const deliteButon = document.createElement('button')
-//       deliteButon.className = 'button button_type_delete';
-//       document.querySelector('.element').prepend(deliteButon)
-//       return result
-//     }
-//   })
-//   if(result) {
-//     console.log('Привет')
-//     const deliteButon = document.createElement('button')
-//     deliteButon.className = 'button button_type_delete';
-//     document.querySelector('.element').prepend(deliteButon)
-//      element.prepend
-//   }else {
-//    console.log(false)
-//   }
+.then (data => {
+  cardList.renderItems(data)
  })
-
 .catch((err) => {
   console.log(err)
 })
@@ -155,23 +174,15 @@ api.getInitialCards()
 //Получаем данные профиля
 api.getInitialProfile()
 .then((result) => {
-  userInfoProfile.setUserInfo({name:result.name, info:result.about});
-  profileAvatar.src = result.avatar
+  console.log(result._id)
+  userInfoProfile.setUserInfo(result.name, result.about, result.avatar, result._id);
+})
+.catch((err) => {
+  console.log(err)
 })
 
-const ttt = [{
-  name:'',
-  
-}]
-console.log(result._id)
 
 
-
-
-
-// console.log(userId)
-
-// api.deleteAddCard()
 
 
 
