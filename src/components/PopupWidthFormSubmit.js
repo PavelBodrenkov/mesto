@@ -3,18 +3,19 @@ export default class PopupWidthFormSubmit extends Popup {
   constructor({popupElement}) {
     super(popupElement)
     this._popupElement = popupElement
-    // this._element = element
-    //  this._formElement = document.querySelector('.form_type_delete')
-    // this._handleDeleteIconClick = handleDeleteIconClick
+    this._formElement = this._popupElement.querySelector('.form_type_delete')
   }
 
-  setEventListeners () {
-        super.open()
-      //  this._formElement.addEventListener('submit', (evt) => {
-      //     console.log('submit')
-      //      evt.preventDefault()
-      //      element.remove()
+  setSubmitAction(action) {
+    this._handleSubmitCallback = action;
+  }
 
-      super.setEventListeners()
+  setEventListeners() {
+    super.setEventListeners()
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault()
+      this._handleSubmitCallback()
+      super.close()
+    })
   }
 }

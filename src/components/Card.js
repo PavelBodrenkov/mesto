@@ -17,7 +17,7 @@ export default class Card {
 
       this._element = this._getTemplate()
       this._buttonDelete = this._element.querySelector('.button_type_delete')
-      this._likes = this._element.querySelector('.button_type_like');
+      this._likesButton = this._element.querySelector('.button_type_like');
       this._likeCount = this._element.querySelector('.element__counter_like')
     }
 
@@ -30,7 +30,6 @@ export default class Card {
     }
 
     generateCard () {
-
       this._setEventListeners()
       this._subtitleElement = this._element.querySelector('.element__subtitle')
       this._subtitleElement.textContent = this._name
@@ -52,12 +51,11 @@ export default class Card {
      _setEventListeners () {
        if(this._buttonDelete) {
        this._buttonDelete.addEventListener('click', () => {
-         this._hendelDeleteClick(this._id, this._element)
+         this._hendelDeleteClick(this._id)
        })
        }
 
-
-       this._likes.addEventListener('click', () => {
+       this._likesButton.addEventListener('click', () => {
          this._hendleAddLikeClick(this._id, this._isLiked, (data) => { this._likeStatus(data) })
        });
        this.photoElement = this._element.querySelector('.element__photo')
@@ -70,29 +68,6 @@ export default class Card {
       this._element.remove();
 
     }
-  // добавляем лайк
-  // _hendleAddLike() {
-  //   this._likeCount = this._element.querySelector('.element__counter_like').textContent
-  //   if (this._likes.classList.contains('button_type_like_active')) {
-  //     this._likes.classList.remove('button_type_like_active')
-  //     --this._likeCount
-  //     this._hendleDeleteLikeClick()
-  //     if (this._likeCount === 0) {
-  //       this._element.querySelector('.element__counter_like').style.display = 'none'
-  //     }
-  //   } else {
-  //     this._likes.classList.add('button_type_like_active')
-  //     ++this._likeCount
-  //     this._element.querySelector('.element__counter_like').style.display = 'block'
-  //     this._hendleAddLikeClick()
-  //   }
-  //   this._element.querySelector('.element__counter_like').textContent = this._likeCount
-  // }
-
-// openPopupDelete () {
-//   this.popupDelete = document.querySelector('.popup_delete')
-
-// }
 
 _clickLike (arr) {
   for (let i = 0; i<arr.length; i++) {
@@ -106,10 +81,10 @@ _clickLike (arr) {
 
 _renderLike (data) {
   if(data === true) {
-    this._likes.classList.add('button_type_like_active')
+    this._likesButton.classList.add('button_type_like_active')
     this._isLiked = true
   }else {
-    this._likes.classList.remove('button_type_like_active')
+    this._likesButton.classList.remove('button_type_like_active')
     this._isLiked = false
   }
 }

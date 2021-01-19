@@ -4,26 +4,19 @@ export default class Section {
     this._container = containerSelector;
   }
 
-  addItem(element, isPrepened) {
-    if(isPrepened === true) {
+  addItem(element, isAppend) {
+    if(isAppend === true) {
       this._container.append(element);
     }else {
       this._container.prepend(element);
     }
   }
 
-  // renderItems(items) {
-  //   items.forEach(element => {
-  //     this._renderer(element)
-  //   });
-
-  // }
-
-  renderItems(item) {
+  renderItems(item, insert) {
     if(Array.isArray(item) === true) {
-      item.forEach(item => this._renderer(item))
+      item.forEach(item => this._renderer(item, insert))
   }else {
-    this._renderer(item)
+    this._renderer(item, insert)
   }
 }
 }

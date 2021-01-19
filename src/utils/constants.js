@@ -33,42 +33,11 @@ export const profileAvatar = document.querySelector('.profile__avatar');
 export const formTypeAvatar = document.querySelector ('.form_type_avatar');
 export const element = document.querySelector('.element');
 export const formTypeDelete = document.querySelector('.form_type_delete')
-export const userId = '0ab9e035a96b4c33f93c1a9c'
-
-
-
-
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-
-  export const validationConfig = {
-    inputSelector: '.popup__data',
-    submitButtonSelector: '.button',
-    inputInvalidClass: 'popup__data_type_error',
-    buttonInvalidClass: 'button_type_inactive',
-    disableButtonInvalid: 'button_type_inactive'
-  };
+export const buttonTypeSaveProfile = document.querySelector('.button_type_save-profile')
+export const validationConfig = {
+  inputSelector: '.popup__data',
+  submitButtonSelector: '.button',
+  inputInvalidClass: 'popup__data_type_error',
+  buttonInvalidClass: 'button_type_inactive',
+  disableButtonInvalid: 'button_type_inactive'
+};
