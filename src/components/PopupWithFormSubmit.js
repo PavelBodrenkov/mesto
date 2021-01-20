@@ -1,5 +1,5 @@
 import Popup from './Popup.js'
-export default class PopupWidthFormSubmit extends Popup {
+export default class PopupWithFormSubmit extends Popup {
   constructor({popupElement}) {
     super(popupElement)
     this._popupElement = popupElement
@@ -15,7 +15,6 @@ export default class PopupWidthFormSubmit extends Popup {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault()
       this._handleSubmitCallback()
-      super.close()
     })
   }
 }

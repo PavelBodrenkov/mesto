@@ -12,11 +12,9 @@ export default class Section {
     }
   }
 
-  renderItems(item, insert) {
-    if(Array.isArray(item) === true) {
-      item.forEach(item => this._renderer(item, insert))
-  }else {
-    this._renderer(item, insert)
+  renderItems(item) {
+    item.forEach(item => {
+      this._renderer(item)
+    });
   }
-}
 }
