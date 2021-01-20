@@ -6,11 +6,12 @@ import FormValidator from './../components/FormValidator.js';
 import {popupTypeEdit, popupAddTypePhoto, buttonTypeEdit, profileName, profileSubtitle, popupDataTypeName,
         popupDataTypeJob, buttonTypeAddCard, formTypePhoto, formTypeEdit,
         buttonTypeSaveEdit, elementContent, buttonTypeSaveAdd, popupTypePhoto, elementAdd, validationConfig,
-        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, buttonTypeSaveProfile, renderLoading} from './../utils/constants.js';
+        popupDelete, popupAvatar, profileAvatarContainer, formTypeAvatar, profileAvatar, buttonTypeSaveProfile} from './../utils/constants.js';
 import UserInfo from './../components/UserInfo.js';
 import PopupWithForm from './../components/PopupWithForm.js';
 import PopupWithFormSubmit from '../components/PopupWithFormSubmit.js'
 import Api from './../components/Api.js'
+import {renderLoading} from './../utils/utils.js'
 
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-19',
@@ -92,12 +93,15 @@ const popupEditForm = new PopupWithForm({
     console.log(item)
     renderLoading(true, buttonTypeSaveEdit)
     api.pathEditProfile({ name: item['name'], about: item['profession'] })
-      .then(result => userInfoProfile.setUserInfo(result.name, result.about, result.avatar, result._id))
+      .then(result =>  {
+        userInfoProfile.setUserInfo(result.name, result.about, result.avatar, result._id)
+        popupEditForm.close()
+      })
       .catch(err => console.log(`ошибка:${err}`))
       .finally(() => {
         renderLoading(false, buttonTypeSaveEdit)
       })
-    popupEditForm.close()
+
   }
 })
 popupEditForm.setEventListeners()
@@ -127,15 +131,14 @@ const popupPhotoForm = new PopupWithForm({
     renderLoading(true, buttonTypeSaveAdd)
     api.postAddCard({ name: item.point, link: item.photo })
       .then((result) => {
-        createCard(result)
         const element = createCard(result)
         cardList.addItem(element, false)
+        popupPhotoForm.close()
       })
       .catch(err => console.log(`ошибка:${err}`))
       .finally(() => {
         renderLoading(false, buttonTypeSaveAdd)
       })
-    popupPhotoForm.close()
   }
 })
 popupPhotoForm.setEventListeners()
@@ -147,12 +150,12 @@ const popupOpenAvatar = new PopupWithForm({
     api.addAvatar({ avatar: item.photoAvatar })
       .then((result) => {
         profileAvatar.src = result.avatar
+        popupOpenAvatar.close()
       })
       .catch(err => console.log(`ошибка:${err}`))
       .finally(() => {
         renderLoading(false, buttonTypeSaveProfile)
       })
-    popupOpenAvatar.close()
   }
 });
 popupOpenAvatar.setEventListeners();
