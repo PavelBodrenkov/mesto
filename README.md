@@ -32,10 +32,3 @@
 - npm i – установить зависимости проекта
 
 - npm run dev - открой проект в браузере
-
-## Фото проекта
-![image](https://user-images.githubusercontent.com/70709823/110527818-79f97a80-8128-11eb-8a0d-dfc59c79be12.png)
-
-
-
-
